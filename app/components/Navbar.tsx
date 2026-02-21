@@ -7,7 +7,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   // Ganti nomor ini dengan nomor WhatsApp asli Mas Khans (gunakan format 62 tanpa + atau 0)
-  const whatsappNumber = "6281234567890";
+  const whatsappNumber = "6289664031115";
   const whatsappLink = `https://wa.me/${whatsappNumber}`;
 
   const toggleMenu = () => setIsOpen(!isOpen);
