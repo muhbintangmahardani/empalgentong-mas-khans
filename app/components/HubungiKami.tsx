@@ -54,7 +54,7 @@ export default function ContactSection() {
                   </div>
                   <div className="text-left">
                     <p className="text-xs font-bold text-neutral-400 uppercase tracking-wider mb-0.5">WhatsApp</p>
-                    <p className="font-bold text-neutral-800 group-hover:text-green-600 transition-colors">+62 812 3456 7890</p>
+                    <p className="font-bold text-neutral-800 group-hover:text-green-600 transition-colors">+6289664031115</p>
                   </div>
                 </div>
               </a>

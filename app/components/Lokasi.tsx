@@ -45,8 +45,8 @@ export default function LocationSection() {
                 </div>
                 <div>
                   <h4 className="text-sm font-bold text-neutral-400 uppercase tracking-wider mb-1">Telepon</h4>
-                  <a href="tel:+6281234567890" className="text-lg font-bold text-neutral-900 hover:text-blue-500 transition-colors">
-                    +62 812 3456 7890
+                  <a href="tel:+6289664031115" className="text-lg font-bold text-neutral-900 hover:text-blue-500 transition-colors">
+                    +6289664031115
                   </a>
                 </div>
               </div>

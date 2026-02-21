@@ -33,17 +33,18 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="fixed top-0 w-full z-50 border-b border-amber-100 bg-[#FFFBEB]/90 backdrop-blur-md">
+    // KUNCIAN 3: Tambahkan left-0, right-0, dan max-w-[100vw] agar navbar responsif dan tidak geser
+    <nav className="fixed top-0 left-0 right-0 w-full max-w-[100vw] z-50 border-b border-amber-100 bg-[#FFFBEB]/90 backdrop-blur-md">
       {/* --- CONTAINER UTAMA --- */}
       <div className="max-w-7xl mx-auto px-6 md:px-12 py-4 flex items-center justify-between">
         
         {/* LOGO */}
         <div className="flex items-center gap-3 z-50 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          {/* Mengganti Inisial M dengan Logo Lokal */}
+          {/* Mengganti Inisial M dengan Logo Lokal (PATH DITAMBAHKAN / DI DEPAN) */}
           <img 
-            src="assets/logo.png" /* Ganti nama file ini sesuai dengan nama logo Anda di folder public, misal: /icon.png */
+            src="/assets/logo.png" 
             alt="Logo Mas Khans" 
-            className="h-10 w-10 object-contain drop-shadow-sm" /* Ukuran bisa disesuaikan, h-10 = 40px */
+            className="h-10 w-10 object-contain drop-shadow-sm" 
           />
           <span className="text-xl font-extrabold tracking-tight">
             Mas Khans<span className="text-amber-500">.</span>

@@ -75,7 +75,7 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-amber-500 rounded-full mt-1.5 shrink-0"></span>
-                <span className="leading-relaxed">Pesan Antar (GoFood, GrabFood, ShopeeFood)</span>
+                <span className="leading-relaxed">Pesan Antar (GoFood, GrabFood)</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-amber-500 rounded-full mt-1.5 shrink-0"></span>
@@ -101,7 +101,7 @@ export default function Footer() {
                   <Phone size={16} className="text-amber-500" />
                 </div>
                 <span className="text-sm text-neutral-400 group-hover:text-white transition-colors">
-                  +62 812 3456 7890
+                  +62 89664031115
                 </span>
               </li>
               <li className="flex items-center gap-3 group">

@@ -10,13 +10,13 @@ import Testimonial from './components/Testimonial';
 import Lokasi from './components/Lokasi';
 import Footer from './components/Footer';
 
-
 // Import komponen Wrapper Animasi kita
 import ScrollReveal from './components/ScrollReveal';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#FFFBEB] font-sans text-[#171717]">
+    // KUNCIAN 2: Tambahkan overflow-x-hidden, w-full, dan max-w-[100vw]
+    <div className="min-h-screen bg-[#FFFBEB] font-sans text-[#171717] overflow-x-hidden w-full max-w-[100vw]">
       <Navbar />
       <ScrollReveal direction="up"><Hero /></ScrollReveal>
       <ScrollReveal direction="up"><AboutUs /></ScrollReveal>
