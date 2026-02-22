@@ -4,15 +4,14 @@ import React, { useState } from 'react';
 import { Sparkles, Soup, ShieldCheck, Clock } from 'lucide-react';
 
 export default function Features() {
-  // State untuk melacak card mana yang sedang ditekan di mobile (untuk efek visual instan)
+  // State untuk melacak card mana yang sedang ditekan
   const [activeCard, setActiveCard] = useState<number | null>(null);
 
-  // Fungsi penanganan klik dengan efek transisi singkat (seperti hover tapi untuk layar sentuh)
+  // Fungsi klik diubah menjadi "Toggle" (Permanen sampai diklik lagi)
   const handleCardClick = (index: number) => {
-    setActiveCard(index);
-    setTimeout(() => {
-      setActiveCard(null);
-    }, 250); // Efek memudar setelah 250ms agar terasa mulus
+    // Jika user mengklik card yang sudah aktif, matikan (null). 
+    // Jika mengklik card yang belum aktif, nyalakan (index).
+    setActiveCard(prev => prev === index ? null : index);
   };
 
   return (
@@ -36,7 +35,7 @@ export default function Features() {
           </p>
         </div>
         
-        {/* --- 3 KOTAK FITUR (Interaktif) --- */}
+        {/* --- 3 KOTAK FITUR (Interaktif Toggle) --- */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           
           {/* Kotak 1: Resep & Rempah */}
@@ -44,7 +43,7 @@ export default function Features() {
             onClick={() => handleCardClick(1)}
             className={`group p-8 rounded-[2rem] bg-[#FFFBEB] border transition-all duration-300 relative overflow-hidden cursor-pointer select-none
               ${activeCard === 1 
-                ? 'border-amber-400 scale-[0.98] shadow-inner bg-amber-50' // Mode aktif di HP
+                ? 'border-amber-400 scale-[0.98] shadow-inner bg-amber-50 ring-4 ring-amber-100/50' // Mode aktif di HP
                 : 'border-amber-100 md:hover:border-amber-300 md:hover:-translate-y-1 md:hover:shadow-xl md:hover:shadow-amber-100/50' // Mode normal/hover PC
               }
             `}
@@ -56,11 +55,11 @@ export default function Features() {
 
             <div className={`h-14 w-14 rounded-2xl flex items-center justify-center text-white mb-6 shadow-md transition-all duration-300 relative z-10
               ${activeCard === 1 
-                ? 'bg-amber-600 scale-110 rotate-3 shadow-amber-600/30' 
+                ? 'bg-amber-600 scale-110 rotate-3 shadow-lg shadow-amber-600/40 animate-pulse' 
                 : 'bg-amber-500 shadow-amber-500/20 md:group-hover:scale-110 md:group-hover:rotate-3'
               }
             `}>
-              <Soup size={28} />
+              <Soup size={28} className={activeCard === 1 ? 'animate-bounce' : ''} />
             </div>
             <h3 className="text-xl md:text-2xl font-bold mb-3 text-neutral-900 relative z-10">Kaya Rempah Otentik</h3>
             <p className="text-neutral-600 leading-relaxed relative z-10">
@@ -73,7 +72,7 @@ export default function Features() {
             onClick={() => handleCardClick(2)}
             className={`group p-8 rounded-[2rem] bg-[#FFFBEB] border transition-all duration-300 relative overflow-hidden cursor-pointer select-none
               ${activeCard === 2 
-                ? 'border-amber-400 scale-[0.98] shadow-inner bg-amber-50'
+                ? 'border-amber-400 scale-[0.98] shadow-inner bg-amber-50 ring-4 ring-amber-100/50'
                 : 'border-amber-100 md:hover:border-amber-300 md:hover:-translate-y-1 md:hover:shadow-xl md:hover:shadow-amber-100/50'
               }
             `}
@@ -85,11 +84,11 @@ export default function Features() {
 
             <div className={`h-14 w-14 rounded-2xl flex items-center justify-center text-white mb-6 shadow-md transition-all duration-300 relative z-10
               ${activeCard === 2 
-                ? 'bg-amber-600 scale-110 rotate-3 shadow-amber-600/30' 
+                ? 'bg-amber-600 scale-110 rotate-3 shadow-lg shadow-amber-600/40 animate-pulse' 
                 : 'bg-amber-500 shadow-amber-500/20 md:group-hover:scale-110 md:group-hover:rotate-3'
               }
             `}>
-              <ShieldCheck size={28} />
+              <ShieldCheck size={28} className={activeCard === 2 ? 'animate-bounce' : ''} />
             </div>
             <h3 className="text-xl md:text-2xl font-bold mb-3 text-neutral-900 relative z-10">Bahan Segar Harian</h3>
             <p className="text-neutral-600 leading-relaxed relative z-10">
@@ -102,7 +101,7 @@ export default function Features() {
             onClick={() => handleCardClick(3)}
             className={`group p-8 rounded-[2rem] bg-[#FFFBEB] border transition-all duration-300 relative overflow-hidden cursor-pointer select-none
               ${activeCard === 3 
-                ? 'border-amber-400 scale-[0.98] shadow-inner bg-amber-50'
+                ? 'border-amber-400 scale-[0.98] shadow-inner bg-amber-50 ring-4 ring-amber-100/50'
                 : 'border-amber-100 md:hover:border-amber-300 md:hover:-translate-y-1 md:hover:shadow-xl md:hover:shadow-amber-100/50'
               }
             `}
@@ -114,11 +113,11 @@ export default function Features() {
 
             <div className={`h-14 w-14 rounded-2xl flex items-center justify-center text-white mb-6 shadow-md transition-all duration-300 relative z-10
               ${activeCard === 3 
-                ? 'bg-amber-600 scale-110 rotate-3 shadow-amber-600/30' 
+                ? 'bg-amber-600 scale-110 rotate-3 shadow-lg shadow-amber-600/40 animate-pulse' 
                 : 'bg-amber-500 shadow-amber-500/20 md:group-hover:scale-110 md:group-hover:rotate-3'
               }
             `}>
-              <Clock size={28} />
+              <Clock size={28} className={activeCard === 3 ? 'animate-bounce' : ''} />
             </div>
             <h3 className="text-xl md:text-2xl font-bold mb-3 text-neutral-900 relative z-10">Pelayanan Responsif</h3>
             <p className="text-neutral-600 leading-relaxed relative z-10">

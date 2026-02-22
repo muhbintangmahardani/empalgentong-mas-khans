@@ -72,6 +72,20 @@ export default function Hero() {
   return (
     <main className="pt-24 md:pt-32 pb-10 max-w-7xl mx-auto px-6 md:px-12">
       
+      {/* --- INJEKSI CSS UNTUK ANIMASI KILATAN (SHIMMER) --- */}
+      <style>
+        {`
+          @keyframes shine {
+            0% { left: -100%; }
+            20% { left: 200%; }
+            100% { left: 200%; }
+          }
+          .animate-shine {
+            animation: shine 8s infinite ease-in-out;
+          }
+        `}
+      </style>
+
       {/* --- KONTEN UTAMA HERO --- */}
       <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-10 relative z-10">
         
@@ -88,12 +102,34 @@ export default function Hero() {
             <Leaf size={120} />
           </div>
           
-          {/* --- PERBAIKAN: BADGE FULL INGGRIS YANG MINIMALIS & ELEGAN --- */}
-          <div className="mb-6">
-            <span className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-amber-50 text-amber-700 font-bold text-[10px] sm:text-xs uppercase tracking-[0.25em] border border-amber-200/60 shadow-sm backdrop-blur-sm relative z-10">
-              <Sparkles size={14} className="text-amber-500 animate-pulse" />
-              The Authentic Taste of Heritage
-            </span>
+          {/* --- PERBAIKAN: BADGE INTERAKTIF BISA DIKLIK (MOBILE & DESKTOP) --- */}
+          {/* Ubah cursor-default menjadi cursor-pointer */}
+          <div className="mb-6 relative inline-block mx-auto md:mx-0 group cursor-pointer select-none">
+            
+            {/* Sparkle Kecil Melayang di Kiri Bawah */}
+            <div className="absolute -bottom-2 -left-3 text-amber-400 animate-bounce z-20">
+              <Sparkles size={12} />
+            </div>
+            
+            {/* Sparkle Kecil Melayang di Kanan Atas */}
+            <div className="absolute -top-2 -right-3 text-amber-500 animate-pulse z-20" style={{ animationDelay: '0.3s' }}>
+              <Sparkles size={16} />
+            </div>
+
+            {/* Container Badge (Ditambah active:scale-95 agar memberi efek tertekan di HP) */}
+            <div className="relative overflow-hidden inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-gradient-to-r from-amber-50 to-orange-50 text-amber-700 font-bold text-[10px] sm:text-xs uppercase tracking-[0.25em] border border-amber-200/60 shadow-sm backdrop-blur-sm z-10 transition-transform duration-300 hover:scale-105 active:scale-95">
+              
+              {/* === ELEMEN KILATAN CAHAYA (SHIMMER) === */}
+              <div className="absolute top-0 -left-[100%] w-1/2 h-full bg-gradient-to-r from-transparent via-white/80 to-transparent -skew-x-12 animate-shine pointer-events-none z-20"></div>
+
+              {/* Sparkle Kiri */}
+              <Sparkles size={15} className="text-amber-500 animate-pulse relative z-10" />
+              
+              <span className="relative z-10">The Authentic Taste of Heritage</span>
+              
+              {/* Sparkle Kanan */}
+              <Sparkles size={15} className="text-amber-500 animate-pulse relative z-10" style={{ animationDelay: '0.5s' }} />
+            </div>
           </div>
           
           {/* JUDUL UTAMA */}

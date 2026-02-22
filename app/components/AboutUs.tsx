@@ -4,15 +4,14 @@ import React, { useState } from 'react';
 import { Flame, Heart, Award, CheckCircle2 } from 'lucide-react';
 
 export default function AboutUs() {
-  // State untuk melacak card mana yang sedang ditekan di mobile (untuk efek highlight warna)
+  // State untuk melacak card mana yang sedang ditekan
   const [activeCard, setActiveCard] = useState<number | null>(null);
 
-  // Fungsi untuk menangani efek klik di mobile dengan delay singkat (HANYA WARNA)
+  // Fungsi klik diubah menjadi "Toggle" (Permanen sampai diklik lagi)
   const handleCardClick = (index: number) => {
-    setActiveCard(index);
-    setTimeout(() => {
-      setActiveCard(null);
-    }, 200); // Efek highlight warna hilang setelah 200ms
+    // Jika user mengklik card yang sudah aktif, maka matikan (null). 
+    // Jika mengklik card yang belum aktif, maka nyalakan (index).
+    setActiveCard(prev => prev === index ? null : index);
   };
 
   return (
@@ -73,18 +72,19 @@ export default function AboutUs() {
           {/* List Keunggulan dengan Bentuk Frame/Card */}
           <div className="space-y-5 pt-4">
             
-            {/* Poin 1 - Card Berbingkai */}
+            {/* Poin 1 - Card Berbingkai Interaktif */}
             <div 
               onClick={() => handleCardClick(1)}
-              className={`flex items-start gap-4 p-5 md:p-6 rounded-[1.5rem] cursor-pointer transition-colors duration-300 border shadow-sm
+              className={`flex items-start gap-4 p-5 md:p-6 rounded-[1.5rem] cursor-pointer transition-all duration-300 border shadow-sm
                 ${activeCard === 1 
-                  ? 'bg-amber-50 border-amber-300' // Mode aktif (Highlight warna)
+                  ? 'bg-amber-50 border-amber-400 ring-4 ring-amber-100/50' // Mode aktif: border nyala & ada efek ring
                   : 'bg-white border-amber-100 hover:border-amber-300 hover:bg-amber-50/50' // Mode normal/hover
                 }
               `}
             >
-              <div className={`p-3 rounded-xl shrink-0 transition-colors duration-300 ${activeCard === 1 ? 'bg-amber-500 text-white shadow-md' : 'bg-amber-100 text-amber-600'}`}>
-                <Flame size={24} />
+              <div className={`p-3 rounded-xl shrink-0 transition-all duration-300 ${activeCard === 1 ? 'bg-amber-500 text-white shadow-lg shadow-amber-500/40 animate-pulse' : 'bg-amber-100 text-amber-600'}`}>
+                {/* Animasi memantul akan aktif saat diklik */}
+                <Flame size={24} className={activeCard === 1 ? 'animate-bounce' : ''} />
               </div>
               <div>
                 <h3 className="font-bold text-neutral-900 text-lg mb-1.5 select-none">Kaya Rempah & Kuah Kental</h3>
@@ -92,18 +92,19 @@ export default function AboutUs() {
               </div>
             </div>
 
-            {/* Poin 2 - Card Berbingkai */}
+            {/* Poin 2 - Card Berbingkai Interaktif */}
             <div 
               onClick={() => handleCardClick(2)}
-              className={`flex items-start gap-4 p-5 md:p-6 rounded-[1.5rem] cursor-pointer transition-colors duration-300 border shadow-sm
+              className={`flex items-start gap-4 p-5 md:p-6 rounded-[1.5rem] cursor-pointer transition-all duration-300 border shadow-sm
                 ${activeCard === 2 
-                  ? 'bg-amber-50 border-amber-300' // Mode aktif (Highlight warna)
+                  ? 'bg-amber-50 border-amber-400 ring-4 ring-amber-100/50' // Mode aktif: border nyala & ada efek ring
                   : 'bg-white border-amber-100 hover:border-amber-300 hover:bg-amber-50/50' // Mode normal/hover
                 }
               `}
             >
-              <div className={`p-3 rounded-xl shrink-0 transition-colors duration-300 ${activeCard === 2 ? 'bg-amber-500 text-white shadow-md' : 'bg-amber-100 text-amber-600'}`}>
-                <CheckCircle2 size={24} />
+              <div className={`p-3 rounded-xl shrink-0 transition-all duration-300 ${activeCard === 2 ? 'bg-amber-500 text-white shadow-lg shadow-amber-500/40 animate-pulse' : 'bg-amber-100 text-amber-600'}`}>
+                {/* Animasi memantul akan aktif saat diklik */}
+                <CheckCircle2 size={24} className={activeCard === 2 ? 'animate-bounce' : ''} />
               </div>
               <div>
                 <h3 className="font-bold text-neutral-900 text-lg mb-1.5 select-none">Daging Sapi Segar Pilihan</h3>
