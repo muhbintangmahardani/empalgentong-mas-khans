@@ -8,9 +8,9 @@ import {
   UtensilsCrossed, 
   ChefHat, 
   CheckCircle2, 
-  Send // Ikon untuk header statis
+  Send 
 } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion'; // PERBAIKAN 1: Tambahkan 'Variants' di sini
 
 // --- KOMPONEN IKON TIKTOK (KUSTOM) ---
 const TikTokIcon = ({ size = 20, className = "" }) => (
@@ -20,7 +20,8 @@ const TikTokIcon = ({ size = 20, className = "" }) => (
 );
 
 // --- VARIANT ANIMASI FRAMER MOTION UNTUK CATERING ---
-const containerVariants = {
+// PERBAIKAN 2: Tambahkan ': Variants' setelah nama variabel
+const containerVariants: Variants = {
   hidden: { opacity: 1 },
   visible: {
     opacity: 1,
@@ -31,20 +32,19 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+// PERBAIKAN 3: Tambahkan ': Variants' setelah nama variabel
+const itemVariants: Variants = {
   hidden: { opacity: 0, x: -20 }, 
   visible: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 100 } },
 };
 
-export default function ContactSection() {
+export default function HubungiKami() {
   return (
-    // Latar Belakang putih bersih agar selang-seling dengan FAQ
     <section id="contact" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         
         {/* --- HEADER SECTION --- */}
         <div className="text-center mb-16">
-          {/* Ikon Send statis (tanpa animasi bounce) */}
           <div className="inline-flex items-center justify-center p-3 bg-amber-100 rounded-2xl text-amber-600 mb-6">
             <Send size={28} />
           </div>
@@ -184,7 +184,7 @@ export default function ContactSection() {
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }} // Animasi jalan saat sudah terlihat di layar
+              viewport={{ once: true, margin: "-50px" }}
             >
               {[
                 "Minimal pemesanan 20 porsi",
