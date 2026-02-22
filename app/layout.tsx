@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Empal Gentong Mas Khans | Otentik Cirebon",
     description: "Nikmati kelezatan otentik Empal Gentong khas Cirebon di Slipi, Jakarta Barat.",
-    url: "https://empalgentong-mas-khans.vercel.app/", // Catatan: Jika nanti sudah beli domain (misal .com), ganti "/" ini dengan "https://www.domainanda.com"
+    url: "https://empalgentong-mas-khans.vercel.app/", // Bagus sekali! URL Vercel sudah dimasukkan
     siteName: "Empal Gentong Mas Khans",
     images: [
       {
@@ -65,9 +65,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // KUNCIAN 1: Tambahkan overflow-x-hidden agar layar HP tidak bocor ke samping
-    // BONUS: Tambahkan scroll-smooth agar klik menu navbar bergeraknya halus
-    <html lang="id" className="overflow-x-hidden scroll-smooth">
+    // PERBAIKAN: Menghapus 'scroll-smooth' agar pindah halaman jadi instan dan efek fade-in bisa bekerja optimal
+    <html lang="id" className="overflow-x-hidden">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden w-full`}
       >

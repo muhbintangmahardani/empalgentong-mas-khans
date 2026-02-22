@@ -5,13 +5,9 @@ import Link from 'next/link';
 import { ArrowLeft, Info, X, LayoutGrid, UtensilsCrossed, Coffee } from 'lucide-react';
 
 export default function AllMenuPage() {
-  // State untuk mengontrol pop-up detail menu
   const [selectedItem, setSelectedItem] = useState<any>(null);
-  
-  // State untuk filter kategori aktif
   const [activeFilter, setActiveFilter] = useState('Semua');
 
-  // Data lengkap semua menu 
   const allMenuItems = [
     {
       id: 1,
@@ -87,15 +83,12 @@ export default function AllMenuPage() {
     }
   ];
 
-  // Logika Filter Data
   const filteredMenu = activeFilter === 'Semua' 
     ? allMenuItems 
     : allMenuItems.filter(item => item.type === activeFilter.toLowerCase());
 
-  // Fungsi untuk menutup modal
   const closeModal = () => setSelectedItem(null);
 
-  // Daftar tombol filter
   const filterOptions = [
     { label: 'Semua', icon: <LayoutGrid size={18} /> },
     { label: 'Makanan', icon: <UtensilsCrossed size={18} /> },
@@ -103,33 +96,42 @@ export default function AllMenuPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-[#FFFBEB] pt-8 pb-24 relative">
+    // Menambahkan kelas 'animate-fade-in-page' ke pembungkus utama
+    <main className="min-h-screen bg-[#FFFBEB] pt-8 pb-24 relative animate-fade-in-page">
       
-      {/* --- INJEKSI CSS UNTUK ANIMASI MODAL & FILTER --- */}
       <style>{`
+        /* Animasi Transisi Halaman (Memudar Masuk) */
+        @keyframes fadeInPage {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        .animate-fade-in-page { 
+          animation: fadeInPage 0.6s ease-out forwards; 
+        }
+
+        /* Animasi Modal & Filter */
         @keyframes fadeIn {
           from { opacity: 0; }
           to { opacity: 1; }
         }
         @keyframes popIn {
-          from { opacity: 0; transform: scale(0.95) translateY(10px); }
-          to { opacity: 1; transform: scale(1) translateY(0); }
+          from { opacity: 0; transform: scale(0.98); }
+          to { opacity: 1; transform: scale(1); }
         }
-        .animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
-        .animate-pop-in { animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .animate-fade-in { animation: fadeIn 0.3s ease-out forwards; }
+        .animate-pop-in { animation: popIn 0.3s ease-out forwards; }
       `}</style>
 
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         
-        {/* Tombol Kembali */}
+        {/* Tombol Kembali ke #menu */}
         <div className="mb-8">
-          <Link href="/" className="inline-flex items-center gap-2 text-neutral-600 hover:text-amber-600 font-semibold transition-colors bg-white px-5 py-2.5 rounded-full shadow-sm border border-amber-100 w-fit">
+          <Link href="/#menu" className="inline-flex items-center gap-2 text-neutral-600 hover:text-amber-600 font-semibold transition-colors bg-white px-5 py-2.5 rounded-full shadow-sm border border-amber-100 w-fit active:scale-95">
             <ArrowLeft size={20} />
-            Kembali ke Beranda
+            Kembali
           </Link>
         </div>
 
-        {/* --- PERBAIKAN: Header Halaman Rata Kiri --- */}
         <div className="text-left mb-10">
           <h1 className="text-4xl md:text-5xl font-extrabold text-neutral-900 leading-tight mb-4">
             Menu Lengkap <span className="text-amber-500">Mas Khans.</span>
@@ -139,7 +141,6 @@ export default function AllMenuPage() {
           </p>
         </div>
 
-        {/* --- TABS FILTER KATEGORI (Juga diubah menjadi Rata Kiri) --- */}
         <div className="flex flex-wrap items-center justify-start gap-3 mb-10">
           {filterOptions.map((option) => (
             <button
@@ -157,7 +158,6 @@ export default function AllMenuPage() {
           ))}
         </div>
 
-        {/* Grid Semua Menu */}
         <div key={activeFilter} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-fade-in">
           {filteredMenu.map((item) => (
             <div 
@@ -179,7 +179,6 @@ export default function AllMenuPage() {
               <div className="flex items-center justify-between px-2 pt-4 border-t border-neutral-100 mt-auto">
                 <span className="text-xl font-extrabold text-amber-600">{item.price}</span>
                 
-                {/* Tombol Info (Detail) */}
                 <div className="relative">
                   <div className="absolute inset-0 bg-amber-400 rounded-2xl opacity-0 group-hover:opacity-100 group-hover:animate-ping"></div>
                   <button className="relative z-10 bg-neutral-100 text-neutral-600 group-hover:bg-amber-500 group-hover:text-white p-3 rounded-2xl transition-all duration-300 shadow-sm group-hover:shadow-lg group-hover:shadow-amber-500/50 active:scale-90 flex items-center justify-center">
@@ -191,7 +190,6 @@ export default function AllMenuPage() {
             </div>
           ))}
 
-          {/* Jika Menu Kosong */}
           {filteredMenu.length === 0 && (
             <div className="col-span-full text-center py-20">
               <p className="text-neutral-500 text-lg">Maaf, menu belum tersedia untuk kategori ini.</p>
@@ -201,7 +199,6 @@ export default function AllMenuPage() {
 
       </div>
 
-      {/* --- MODAL POP-UP DETAIL MENU --- */}
       {selectedItem && (
         <div 
           className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-neutral-900/60 backdrop-blur-sm animate-fade-in"
@@ -225,7 +222,6 @@ export default function AllMenuPage() {
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-              {/* Menampilkan kategori sebagai badge di modal */}
               <div className="absolute bottom-4 left-6 bg-amber-500 text-white px-3 py-1.5 rounded-full text-xs font-bold flex items-center shadow-md">
                 {selectedItem.category}
               </div>
@@ -240,7 +236,6 @@ export default function AllMenuPage() {
                 {selectedItem.description}
               </p>
 
-              {/* Harga Terpusat (Tanpa Tombol Pesan) */}
               <div className="flex items-center justify-between pt-6 border-t border-neutral-100">
                 <div className="flex flex-col w-full text-center">
                   <span className="text-sm text-neutral-500 font-medium uppercase tracking-widest mb-1">Harga Menu</span>

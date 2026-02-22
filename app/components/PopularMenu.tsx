@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Star, Flame, Sparkles, Info, X, Leaf } from 'lucide-react';
+import { Star, Flame, Sparkles, Info, X, Leaf, TrendingUp } from 'lucide-react';
 
 export default function PopularMenu() {
   const [selectedItem, setSelectedItem] = useState<any>(null);
@@ -76,19 +76,21 @@ export default function PopularMenu() {
 
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         
-        {/* Header Section */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16 gap-6">
-          <div className="max-w-2xl">
+        {/* --- PERBAIKAN HEADER SECTION --- */}
+        {/* Mengubah items-end menjadi items-start di mobile agar mepet kiri di Android, lalu md:items-end di desktop */}
+        <div className="flex flex-col items-start md:flex-row md:justify-between md:items-end mb-12 md:mb-16 gap-6 w-full text-left">
+          
+          <div className="max-w-2xl w-full">
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-50 text-amber-600 font-bold text-sm mb-4 border border-amber-200/50 shadow-sm">
               <Sparkles size={16} className="animate-pulse text-amber-500" />
               Pilihan Favorit
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-neutral-900 leading-tight">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-neutral-900 leading-tight w-full">
               Menu Andalan <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-600">Mas Khans.</span>
             </h2>
           </div>
           
-          <Link href="/menu" className="hidden md:flex items-center gap-2 text-neutral-600 hover:text-amber-600 font-semibold transition-colors group">
+          <Link href="/menu" className="hidden md:flex items-center gap-2 text-neutral-600 hover:text-amber-600 font-semibold transition-colors group shrink-0">
             Lihat Semua Menu 
             <span className="transform group-hover:translate-x-1 transition-transform">→</span>
           </Link>
@@ -99,10 +101,11 @@ export default function PopularMenu() {
           {menuItems.map((item) => (
             <div 
               key={item.id} 
-              className="group bg-white rounded-3xl border border-neutral-100 shadow-lg shadow-neutral-200/40 overflow-hidden hover:shadow-2xl hover:shadow-amber-500/20 transition-all duration-300 hover:-translate-y-2 flex flex-col cursor-pointer"
+              // Menghapus 'group' dari parent card agar efek hover tidak saling menimpa dengan elemen anaknya di mobile
+              className="bg-white rounded-3xl border border-neutral-100 shadow-lg shadow-neutral-200/40 overflow-hidden hover:shadow-2xl hover:shadow-amber-500/20 transition-all duration-300 md:hover:-translate-y-2 flex flex-col cursor-pointer"
               onClick={() => setSelectedItem(item)} 
             >
-              <div className="relative h-56 w-full overflow-hidden bg-neutral-100">
+              <div className="relative h-56 w-full overflow-hidden bg-neutral-100 group">
                 
                 {item.badge && (
                   <div className="absolute top-4 left-4 z-20 overflow-hidden bg-neutral-900/80 backdrop-blur-md px-3 py-1.5 rounded-full shadow-lg border border-neutral-700/50">
@@ -120,14 +123,14 @@ export default function PopularMenu() {
                 <img 
                   src={item.image} 
                   alt={item.name} 
-                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 ease-out"
+                  className="w-full h-full object-cover transform md:group-hover:scale-110 transition-transform duration-500 ease-out"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/40 to-transparent opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 hidden md:block"></div>
               </div>
 
               <div className="p-6 flex flex-col flex-grow">
                 <div className="flex-grow">
-                  <h3 className="text-xl font-bold text-neutral-900 group-hover:text-amber-600 transition-colors leading-tight mb-2">
+                  <h3 className="text-xl font-bold text-neutral-900 leading-tight mb-2">
                     {item.name}
                   </h3>
                   <p className="text-sm text-neutral-500 leading-relaxed mb-6 line-clamp-2">
@@ -139,12 +142,16 @@ export default function PopularMenu() {
                   <span className="text-lg font-extrabold text-amber-600">
                     {item.price}
                   </span>
-                  <div className="relative">
-                    <div className="absolute inset-0 bg-amber-400 rounded-2xl opacity-0 group-hover:opacity-100 group-hover:animate-ping"></div>
-                    <button className="relative z-10 bg-neutral-100 text-neutral-600 group-hover:bg-amber-500 group-hover:text-white p-3 rounded-2xl transition-all duration-300 shadow-sm group-hover:shadow-lg group-hover:shadow-amber-500/50 active:scale-90 flex items-center justify-center">
-                      <Info size={20} className="transform transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110" />
-                    </button>
-                  </div>
+                  
+                  {/* --- PERBAIKAN TOMBOL INFO UNTUK MOBILE --- */}
+                  {/* Dibuat solid bg-amber-50 agar terlihat jelas sebagai tombol, dan membesar saat ditekan (active) */}
+                  <button 
+                    className="flex items-center justify-center p-2.5 rounded-2xl bg-amber-50 text-amber-500 border border-amber-200/50 transition-all duration-200 active:scale-90 active:bg-amber-500 active:text-white md:hover:bg-amber-500 md:hover:text-white shadow-sm"
+                    aria-label="Lihat Detail Menu"
+                  >
+                    <Info size={20} />
+                  </button>
+
                 </div>
               </div>
             </div>
@@ -152,8 +159,8 @@ export default function PopularMenu() {
         </div>
 
         {/* Tombol Lihat Semua Menu (Mobile) */}
-        <div className="mt-10 text-center md:hidden">
-            <Link href="/menu" className="block w-full py-4 rounded-full border-2 border-amber-200 text-amber-600 font-bold hover:bg-amber-50 transition-colors">
+        <div className="mt-10 text-center md:hidden w-full">
+            <Link href="/menu" className="block w-full py-4 rounded-full border-2 border-amber-200 text-amber-600 font-bold hover:bg-amber-50 transition-colors active:scale-95">
                 Lihat Semua Menu
             </Link>
         </div>
@@ -172,7 +179,7 @@ export default function PopularMenu() {
           >
             <button 
               onClick={closeModal}
-              className="absolute top-4 right-4 z-20 bg-black/40 hover:bg-black/60 text-white p-2 rounded-full backdrop-blur-md transition-all hover:rotate-90 hover:scale-110 duration-300"
+              className="absolute top-4 right-4 z-20 bg-black/40 hover:bg-black/60 active:scale-90 text-white p-2 rounded-full backdrop-blur-md transition-all md:hover:rotate-90 md:hover:scale-110 duration-300"
             >
               <X size={20} />
             </button>
@@ -191,7 +198,6 @@ export default function PopularMenu() {
                   <div className="absolute top-0 bottom-0 left-0 w-full bg-gradient-to-r from-transparent via-white/40 to-transparent animate-shimmer z-0 pointer-events-none"></div>
                   
                   <div className="relative z-10 flex items-center gap-2 text-sm font-bold text-white tracking-wide">
-                    {/* --- PERBAIKAN: Menambahkan <any> pada ReactElement --- */}
                     {selectedItem.icon && React.cloneElement(selectedItem.icon as React.ReactElement<any>, { size: 16 })}
                     {selectedItem.badge}
                   </div>

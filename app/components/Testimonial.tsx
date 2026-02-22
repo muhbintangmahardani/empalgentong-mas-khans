@@ -9,7 +9,7 @@ const testimonials = [
     id: 1,
     name: "Artha Nugraha",
     role: "Mahasiswa",
-    quote: "Empal gentong paling otentik di Jakarta! Kuahnya kental, dagingnya empuk banget. Rempahnya itu lho, bikin nagih. Wajib dicoba!",
+    quote: "Empal gentong paling otentik di Jakarta! Kuahnya kental, dagingnya empuk banget. Rempahnya bikin nagih. Wajib dicoba!",
     rating: 5,
     image: "/assets/artha.png"
   },

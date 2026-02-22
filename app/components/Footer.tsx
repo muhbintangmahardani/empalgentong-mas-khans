@@ -21,9 +21,16 @@ export default function Footer() {
           {/* KOLOM 1: Brand & Sosial Media (Lebih Lebar - 4 Kolom) */}
           <div className="lg:col-span-4">
             <div className="flex items-center gap-3 mb-6">
-              <div className="h-10 w-10 bg-amber-500 rounded-xl flex items-center justify-center shadow-md shadow-amber-500/20">
-                <span className="text-neutral-900 font-extrabold text-xl">M</span>
+              
+              {/* --- PERBAIKAN: Mengganti Inisial M dengan Logo Asli --- */}
+              <div className="h-12 w-12 rounded-xl flex items-center justify-center p-1 bg-white/5 border border-neutral-800 shadow-md">
+                <img 
+                  src="/assets/logo.png" 
+                  alt="Logo Mas Khans" 
+                  className="h-full w-full object-contain drop-shadow-sm" 
+                />
               </div>
+              
               <span className="text-2xl font-extrabold text-white tracking-tight">
                 Mas Khans<span className="text-amber-500">.</span>
               </span>
