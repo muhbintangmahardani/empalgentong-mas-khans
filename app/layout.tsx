@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Empal Gentong Mas Khans | Otentik Cirebon",
     description: "Nikmati kelezatan otentik Empal Gentong khas Cirebon di Slipi, Jakarta Barat.",
-    url: "/", // Catatan: Jika nanti sudah beli domain (misal .com), ganti "/" ini dengan "https://www.domainanda.com"
+    url: "https://empalgentong-mas-khans.vercel.app/", // Catatan: Jika nanti sudah beli domain (misal .com), ganti "/" ini dengan "https://www.domainanda.com"
     siteName: "Empal Gentong Mas Khans",
     images: [
       {
