@@ -6,14 +6,10 @@ import { ShoppingBag, Menu, X } from 'lucide-react';
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
-  // Ganti nomor ini dengan nomor WhatsApp asli Mas Khans (gunakan format 62 tanpa + atau 0)
-  const whatsappNumber = "6289664031115";
-  const whatsappLink = `https://wa.me/${whatsappNumber}`;
-
   const toggleMenu = () => setIsOpen(!isOpen);
 
   // Fungsi untuk scroll mulus ke section yang dituju & menutup menu mobile
-  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, targetId: string) => {
     e.preventDefault();
     
     // Tutup menu mobile jika sedang terbuka
@@ -63,16 +59,15 @@ export default function Navbar() {
 
         {/* TOMBOL PESAN & HAMBURGER */}
         <div className="flex items-center gap-4 z-50">
-          {/* Tombol Pesan Desktop/Tablet */}
-          <a 
-            href={whatsappLink}
-            target="_blank"
-            rel="noopener noreferrer"
+          
+          {/* --- PERBAIKAN: Tombol Pesan Desktop/Tablet (Scroll ke ID 'contact') --- */}
+          <button 
+            onClick={(e) => handleScroll(e, 'contact')}
             className="hidden sm:flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white px-5 py-2.5 rounded-full font-semibold transition-all shadow-md shadow-amber-200/50 active:scale-95"
           >
             <ShoppingBag size={18} />
             Pesan Sekarang
-          </a>
+          </button>
 
           {/* Tombol Hamburger Mobile/iPad */}
           <button 
@@ -98,16 +93,14 @@ export default function Navbar() {
           <a href="#testimonials" onClick={(e) => handleScroll(e, 'testimonials')} className="hover:text-amber-600 transition-colors font-medium">Testimonial</a>
           <a href="#location" onClick={(e) => handleScroll(e, 'location')} className="hover:text-amber-600 transition-colors font-medium">Temukan Kami</a>
           
-          {/* Tombol Pesan Khusus Mobile Layar Kecil */}
-          <a 
-            href={whatsappLink}
-            target="_blank"
-            rel="noopener noreferrer"
+          {/* --- PERBAIKAN: Tombol Pesan Khusus Mobile Layar Kecil (Scroll ke ID 'contact') --- */}
+          <button 
+            onClick={(e) => handleScroll(e, 'contact')}
             className="sm:hidden mt-2 flex items-center justify-center gap-2 w-full bg-amber-500 hover:bg-amber-600 text-white px-5 py-3.5 rounded-full font-semibold transition-all shadow-md shadow-amber-200/50 active:scale-95"
           >
             <ShoppingBag size={18} />
             Pesan Sekarang
-          </a>
+          </button>
         </div>
       </div>
     </nav>

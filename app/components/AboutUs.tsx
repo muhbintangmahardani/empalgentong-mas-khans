@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import { Flame, Heart, Award, CheckCircle2 } from 'lucide-react';
 
@@ -43,7 +45,8 @@ export default function AboutUs() {
           {/* Judul */}
           <div>
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white text-amber-600 font-bold text-sm mb-4 border border-amber-200 shadow-sm">
-              <Heart size={16} className="fill-amber-500 text-amber-500" />
+              {/* --- PERBAIKAN 1: Menambahkan animate-pulse pada ikon Heart --- */}
+              <Heart size={16} className="fill-amber-500 text-amber-500 animate-pulse" />
               Cerita Mas Khans
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-neutral-900 leading-tight">
@@ -60,14 +63,15 @@ export default function AboutUs() {
           {/* List Keunggulan dengan Ikon */}
           <div className="space-y-4 pt-4">
             
-            {/* Poin 1 */}
+            {/* Poin 1 (DI-UPDATE CAPTION-NYA) */}
             <div className="flex items-start gap-4 p-4 rounded-2xl hover:bg-white hover:shadow-lg hover:shadow-amber-100/50 transition-all border border-transparent hover:border-amber-100">
               <div className="bg-amber-100 p-2.5 rounded-xl text-amber-600 shrink-0 mt-1">
                 <Flame size={24} />
               </div>
               <div>
-                <h3 className="font-bold text-neutral-900 text-lg mb-1">Dimasak dalam Gentong Tanah Liat</h3>
-                <p className="text-neutral-600 text-sm leading-relaxed">Proses memasak tradisional ini menjaga suhu dan memberikan aroma khas yang tidak bisa didapatkan dari panci modern.</p>
+                {/* --- PERBAIKAN 2: Mengupdate Judul & Deskripsi --- */}
+                <h3 className="font-bold text-neutral-900 text-lg mb-1">Kaya Rempah & Kuah Kental</h3>
+                <p className="text-neutral-600 text-sm leading-relaxed">Perpaduan rempah-rempah pilihan dan santan segar menghasilkan kuah yang gurih, kental, dan beraroma harum yang khas.</p>
               </div>
             </div>
 

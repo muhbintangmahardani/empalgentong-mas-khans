@@ -32,7 +32,7 @@ const testimonials = [
   {
     id: 4,
     name: "Bintang Mahardani",
-    role: "Food Blogger",
+    role: "Pecinta Kuliner",
     quote: "Ini rasanya enak banget, maknyus yang ga ada duanya. Sambalnya juga nendang! Recommended.",
     rating: 5,
     image: "/assets/bintang.jpg"

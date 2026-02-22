@@ -83,8 +83,8 @@ export default function Hero() {
           {/* DEKORASI BACKGROUND TEKS (Statis & Sangat Samar: 2%) */}
           {/* ========================================================= */}
           
-          {/* 1. Ikon Sparkles di kanan atas */}
-          <div className="absolute -top-8 right-4 md:right-20 opacity-[0.02] -z-10 text-amber-500 transform rotate-12">
+          {/* 1. Ikon Sparkles di kanan atas (Biru) */}
+          <div className="absolute -top-8 right-4 md:right-20 opacity-[0.02] -z-10 text-blue-500 transform rotate-12">
             <Sparkles size={140} />
           </div>
           
@@ -93,25 +93,27 @@ export default function Hero() {
             <Flame size={160} />
           </div>
 
-          {/* 3. Ikon Daun di kanan bawah */}
-          <div className="absolute bottom-10 right-0 md:right-32 opacity-[0.02] -z-10 text-green-600 transform -rotate-6">
+          {/* 3. Ikon Daun di kanan bawah (Hijau) */}
+          <div className="absolute bottom-10 right-0 md:right-32 opacity-[0.02] -z-10 text-emerald-600 transform -rotate-6">
             <Leaf size={120} />
           </div>
           
           {/* ========================================================= */}
 
-          <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-amber-500/10 to-orange-500/10 text-amber-700 font-bold text-sm mb-2 border border-amber-200/50 shadow-sm backdrop-blur-sm relative z-10">
-            <Sparkles size={16} className="text-amber-500 animate-pulse" />
+          {/* PERUBAHAN 1: Ikon Sparkles diganti menjadi Soup (Mangkuk) yang berkedip */}
+          <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-blue-500/10 to-indigo-500/10 text-blue-800 font-bold text-sm mb-2 border border-blue-200/50 shadow-sm backdrop-blur-sm relative z-10">
+            <Soup size={18} className="text-blue-600 animate-pulse" />
             100% Resep Asli Cirebon
-            <BadgeCheck size={16} className="text-amber-600" />
+            <BadgeCheck size={16} className="text-blue-600 animate-pulse" />
           </span>
           
           <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-6xl font-black leading-[1.15] tracking-tighter text-neutral-900 w-full relative z-10">
             Kehangatan Tradisi dalam Semangkuk <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-600">Empal Gentong.</span>
           </h1>
           
+          {/* PERUBAHAN 2: Menghapus "Gentong Tanah Liat" di Caption */}
           <p className="text-lg md:text-xl text-neutral-600 max-w-2xl mx-auto md:mx-0 font-medium leading-relaxed relative z-10">
-            Nikmati resep warisan Mas Khans. Daging sapi pilihan yang empuk, berpadu dengan kuah santan kaya rempah yang dimasak dalam gentong tanah liat.
+            Nikmati resep warisan Mas Khans. Daging sapi pilihan yang empuk, berpadu dengan kuah santan kaya rempah yang diracik dengan kesabaran untuk menghasilkan kelezatan otentik khas Cirebon.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 pt-4 relative z-10">
@@ -123,6 +125,7 @@ export default function Hero() {
               <ArrowRight size={18} className="text-amber-400" />
             </button>
             
+            {/* PERUBAHAN 3: Tombol Lokasi dikembalikan ke desain outline Kuning/Putih yang netral */}
             <button 
               onClick={() => scrollToSection('location')}
               className="w-full sm:w-auto flex items-center justify-center gap-2 bg-white text-neutral-700 border-2 border-amber-200 px-8 py-3.5 rounded-full font-semibold hover:border-amber-400 hover:bg-amber-50 transition-all active:scale-95 shadow-sm"
@@ -171,14 +174,14 @@ export default function Hero() {
           
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] md:w-[130%] aspect-square bg-gradient-to-tr from-amber-200/50 to-yellow-100/40 blur-3xl rounded-full -z-20"></div>
 
-          <div className="absolute -top-6 -left-4 md:-left-10 bg-white p-3 rounded-2xl shadow-xl border border-amber-100 flex items-center gap-2 animate-float-medium z-30">
-            <div className="bg-amber-100 p-2 rounded-xl text-amber-600">
+          <div className="absolute -top-6 -left-4 md:-left-10 bg-white p-3 rounded-2xl shadow-xl border border-emerald-100 flex items-center gap-2 animate-float-medium z-30">
+            <div className="bg-emerald-100 p-2 rounded-xl text-emerald-600">
               <Leaf size={20} />
             </div>
             <span className="text-sm font-bold text-neutral-800 pr-2">Kaya Rempah</span>
           </div>
 
-          <div className="absolute -bottom-6 -right-2 md:-right-8 bg-white p-3 rounded-2xl shadow-xl border border-amber-100 flex items-center gap-2 animate-float-medium z-30" style={{ animationDelay: '1s' }}>
+          <div className="absolute -bottom-6 -right-2 md:-right-8 bg-white p-3 rounded-2xl shadow-xl border border-orange-100 flex items-center gap-2 animate-float-medium z-30" style={{ animationDelay: '1s' }}>
             <div className="bg-orange-100 p-2 rounded-xl text-orange-600">
               <Flame size={20} />
             </div>

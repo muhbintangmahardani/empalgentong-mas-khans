@@ -2,16 +2,20 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, ShoppingBag, Info, X } from 'lucide-react';
+import { ArrowLeft, Info, X, LayoutGrid, UtensilsCrossed, Coffee } from 'lucide-react';
 
 export default function AllMenuPage() {
   // State untuk mengontrol pop-up detail menu
   const [selectedItem, setSelectedItem] = useState<any>(null);
+  
+  // State untuk filter kategori aktif
+  const [activeFilter, setActiveFilter] = useState('Semua');
 
-  // Data lengkap semua menu
+  // Data lengkap semua menu 
   const allMenuItems = [
     {
       id: 1,
+      type: "makanan",
       category: "Empal Gentong",
       name: "Empal Gentong Santan",
       description: "Kuah santan gurih kaya rempah dengan irisan daging sapi empuk.",
@@ -20,6 +24,7 @@ export default function AllMenuPage() {
     },
     {
       id: 2,
+      type: "makanan",
       category: "Empal Gentong",
       name: "Empal Gentong Non-Santan (Asem)",
       description: "Kuah bening segar dengan belimbing wuluh dan daging empuk.",
@@ -28,6 +33,7 @@ export default function AllMenuPage() {
     },
     {
       id: 3,
+      type: "makanan",
       category: "Makanan Pendamping",
       name: "Nasi Lengko Spesial",
       description: "Nasi, tahu, tempe, tauge dengan siraman saus kacang.",
@@ -36,6 +42,7 @@ export default function AllMenuPage() {
     },
     {
       id: 4,
+      type: "makanan",
       category: "Menu Modern",
       name: "Indomie Mas Khans",
       description: "Indomie dengan siraman kuah empal dan daging sapi.",
@@ -44,6 +51,7 @@ export default function AllMenuPage() {
     },
     {
       id: 5,
+      type: "makanan",
       category: "Makanan Pendamping",
       name: "Sate Kambing Muda (10 Tusuk)",
       description: "Sate kambing muda khas Cirebon yang super empuk.",
@@ -52,21 +60,52 @@ export default function AllMenuPage() {
     },
     {
       id: 6,
-      category: "Minuman",
+      type: "minuman",
+      category: "Minuman Khas",
       name: "Es Tjampolay",
-      description: "Sirup legendaris asli Cirebon rasa pisang susu.",
+      description: "Sirup legendaris asli Cirebon rasa pisang susu yang manis dan segar.",
       price: "Rp 12.000",
+      image: "/assets/empal-gentong.png"
+    },
+    {
+      id: 7,
+      type: "minuman",
+      category: "Minuman",
+      name: "Es Teh Manis / Tawar",
+      description: "Teh melati pilihan yang diseduh sempurna, nikmat disajikan dingin.",
+      price: "Rp 5.000",
+      image: "/assets/empal-gentong.png"
+    },
+    {
+      id: 8,
+      type: "minuman",
+      category: "Minuman",
+      name: "Es Jeruk / Jeruk Panas",
+      description: "Perasan jeruk segar asli, kaya akan vitamin C.",
+      price: "Rp 8.000",
       image: "/assets/empal-gentong.png"
     }
   ];
 
+  // Logika Filter Data
+  const filteredMenu = activeFilter === 'Semua' 
+    ? allMenuItems 
+    : allMenuItems.filter(item => item.type === activeFilter.toLowerCase());
+
   // Fungsi untuk menutup modal
   const closeModal = () => setSelectedItem(null);
+
+  // Daftar tombol filter
+  const filterOptions = [
+    { label: 'Semua', icon: <LayoutGrid size={18} /> },
+    { label: 'Makanan', icon: <UtensilsCrossed size={18} /> },
+    { label: 'Minuman', icon: <Coffee size={18} /> }
+  ];
 
   return (
     <main className="min-h-screen bg-[#FFFBEB] pt-8 pb-24 relative">
       
-      {/* --- INJEKSI CSS UNTUK ANIMASI MODAL --- */}
+      {/* --- INJEKSI CSS UNTUK ANIMASI MODAL & FILTER --- */}
       <style>{`
         @keyframes fadeIn {
           from { opacity: 0; }
@@ -76,7 +115,7 @@ export default function AllMenuPage() {
           from { opacity: 0; transform: scale(0.95) translateY(10px); }
           to { opacity: 1; transform: scale(1) translateY(0); }
         }
-        .animate-fade-in { animation: fadeIn 0.3s ease-out forwards; }
+        .animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
         .animate-pop-in { animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
       `}</style>
 
@@ -90,8 +129,8 @@ export default function AllMenuPage() {
           </Link>
         </div>
 
-        {/* Header Halaman */}
-        <div className="text-center md:text-left mb-16">
+        {/* --- PERBAIKAN: Header Halaman Rata Kiri --- */}
+        <div className="text-left mb-10">
           <h1 className="text-4xl md:text-5xl font-extrabold text-neutral-900 leading-tight mb-4">
             Menu Lengkap <span className="text-amber-500">Mas Khans.</span>
           </h1>
@@ -100,9 +139,27 @@ export default function AllMenuPage() {
           </p>
         </div>
 
+        {/* --- TABS FILTER KATEGORI (Juga diubah menjadi Rata Kiri) --- */}
+        <div className="flex flex-wrap items-center justify-start gap-3 mb-10">
+          {filterOptions.map((option) => (
+            <button
+              key={option.label}
+              onClick={() => setActiveFilter(option.label)}
+              className={`flex items-center gap-2 px-6 py-3 rounded-full font-bold transition-all duration-300 ${
+                activeFilter === option.label
+                  ? "bg-amber-500 text-white shadow-lg shadow-amber-500/30 scale-105"
+                  : "bg-white text-neutral-600 hover:bg-amber-50 hover:text-amber-600 border border-neutral-200"
+              }`}
+            >
+              {option.icon}
+              {option.label}
+            </button>
+          ))}
+        </div>
+
         {/* Grid Semua Menu */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {allMenuItems.map((item) => (
+        <div key={activeFilter} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-fade-in">
+          {filteredMenu.map((item) => (
             <div 
               key={item.id} 
               className="group bg-white rounded-[2rem] p-4 flex flex-col shadow-lg shadow-neutral-200/50 border border-amber-50 cursor-pointer hover:-translate-y-2 hover:shadow-2xl transition-all duration-300"
@@ -122,7 +179,7 @@ export default function AllMenuPage() {
               <div className="flex items-center justify-between px-2 pt-4 border-t border-neutral-100 mt-auto">
                 <span className="text-xl font-extrabold text-amber-600">{item.price}</span>
                 
-                {/* Tombol Info (Detail) Baru */}
+                {/* Tombol Info (Detail) */}
                 <div className="relative">
                   <div className="absolute inset-0 bg-amber-400 rounded-2xl opacity-0 group-hover:opacity-100 group-hover:animate-ping"></div>
                   <button className="relative z-10 bg-neutral-100 text-neutral-600 group-hover:bg-amber-500 group-hover:text-white p-3 rounded-2xl transition-all duration-300 shadow-sm group-hover:shadow-lg group-hover:shadow-amber-500/50 active:scale-90 flex items-center justify-center">
@@ -133,6 +190,13 @@ export default function AllMenuPage() {
               </div>
             </div>
           ))}
+
+          {/* Jika Menu Kosong */}
+          {filteredMenu.length === 0 && (
+            <div className="col-span-full text-center py-20">
+              <p className="text-neutral-500 text-lg">Maaf, menu belum tersedia untuk kategori ini.</p>
+            </div>
+          )}
         </div>
 
       </div>
@@ -161,7 +225,7 @@ export default function AllMenuPage() {
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-              {/* Menampilkan kategori sebagai badge di modal karena data AllMenuPage tidak memiliki badge khusus */}
+              {/* Menampilkan kategori sebagai badge di modal */}
               <div className="absolute bottom-4 left-6 bg-amber-500 text-white px-3 py-1.5 rounded-full text-xs font-bold flex items-center shadow-md">
                 {selectedItem.category}
               </div>
@@ -176,19 +240,16 @@ export default function AllMenuPage() {
                 {selectedItem.description}
               </p>
 
+              {/* Harga Terpusat (Tanpa Tombol Pesan) */}
               <div className="flex items-center justify-between pt-6 border-t border-neutral-100">
-                <div className="flex flex-col">
-                  <span className="text-sm text-neutral-500 font-medium">Harga</span>
-                  <span className="text-2xl font-extrabold text-amber-600">
+                <div className="flex flex-col w-full text-center">
+                  <span className="text-sm text-neutral-500 font-medium uppercase tracking-widest mb-1">Harga Menu</span>
+                  <span className="text-3xl font-extrabold text-amber-600">
                     {selectedItem.price}
                   </span>
                 </div>
-                
-                <button className="flex items-center gap-2 bg-neutral-900 hover:bg-neutral-800 text-white px-6 py-3.5 rounded-full font-bold transition-all shadow-lg active:scale-95 group">
-                  <ShoppingBag size={18} className="transform group-hover:-translate-y-1 transition-transform" />
-                  Pesan
-                </button>
               </div>
+
             </div>
 
           </div>

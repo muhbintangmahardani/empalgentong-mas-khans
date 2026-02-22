@@ -14,12 +14,38 @@ import Footer from './components/Footer';
 import ScrollReveal from './components/ScrollReveal';
 
 export default function Home() {
+  // --- SCRIPT RAHASIA SEO LOKAL GOOGLE (JSON-LD) ---
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Empal Gentong Mas Khans",
+    "image": "https://www.empalgentongmaskhans.com/assets/empal-gentong.png", // Nanti ganti domainnya jika sudah beli .com/.id
+    "description": "Nikmati kelezatan otentik Empal Gentong khas Cirebon Mas Khans di Slipi, Jakarta Barat.",
+    "servesCuisine": ["Indonesian", "Cirebon"],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Slipi", // Anda bisa melengkapinya dengan alamat jalan yang lebih detail
+      "addressLocality": "Jakarta Barat",
+      "addressRegion": "DKI Jakarta",
+      "addressCountry": "ID"
+    },
+    "telephone": "+6289664031115",
+    "priceRange": "Rp 15.000 - Rp 45.000"
+  };
+
   return (
     // KUNCIAN 2: Tambahkan overflow-x-hidden, w-full, dan max-w-[100vw]
     <div className="min-h-screen bg-[#FFFBEB] font-sans text-[#171717] overflow-x-hidden w-full max-w-[100vw]">
+      
+      {/* --- INJEKSI SCRIPT SEO KE DALAM HTML --- */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       <Navbar />
       <ScrollReveal direction="up"><Hero /></ScrollReveal>
-      <ScrollReveal direction="up"><AboutUs /></ScrollReveal>
+      <ScrollReveal direction="right"><AboutUs /></ScrollReveal>
       <ScrollReveal direction="left"><Features /></ScrollReveal>
       <ScrollReveal direction="right"><PopularMenu /></ScrollReveal>
       <ScrollReveal direction="up"><Faq /></ScrollReveal>

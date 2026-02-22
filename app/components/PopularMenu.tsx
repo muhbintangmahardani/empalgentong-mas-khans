@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { ShoppingBag, Star, Flame, Sparkles, Info, X } from 'lucide-react';
+import { Star, Flame, Sparkles, Info, X, Leaf } from 'lucide-react';
 
 export default function PopularMenu() {
   const [selectedItem, setSelectedItem] = useState<any>(null);
@@ -11,11 +11,11 @@ export default function PopularMenu() {
     {
       id: 1,
       name: "Empal Gentong Santan",
-      description: "Signature dish Mas Khans. Kuah santan gurih kaya rempah dengan irisan daging sapi pilihan yang sangat empuk. Dimasak secara perlahan di dalam gentong tanah liat untuk mempertahankan aroma khas Cirebon yang otentik.",
+      description: "Signature dish Mas Khans. Kuah santan gurih kaya rempah dengan irisan daging sapi pilihan yang sangat empuk. Dimasak secara perlahan untuk mempertahankan aroma khas Cirebon yang otentik.",
       price: "Rp 25.000",
       image: "assets/empal-gentong.png", 
       badge: "Best Seller",
-      icon: <Star size={14} className="fill-amber-500 text-amber-500" />
+      icon: <Star size={14} className="fill-amber-400 text-amber-400" />
     },
     {
       id: 2,
@@ -24,7 +24,7 @@ export default function PopularMenu() {
       price: "Rp 25.000",
       image: "assets/empal-gentong.png",
       badge: "Segar",
-      icon: <Flame size={14} className="text-orange-500" />
+      icon: <Flame size={14} className="text-orange-400" />
     },
     {
       id: 3,
@@ -32,8 +32,9 @@ export default function PopularMenu() {
       description: "Perpaduan nasi hangat, tahu, tempe, tauge segar, siraman saus kacang khas Cirebon dan taburan kucai. Menu vegetarian yang mengenyangkan dan kaya akan cita rasa tradisional.",
       price: "Rp 15.000",
       image: "assets/empal-gentong.png",
-      badge: "",
-      icon: null
+      // --- PERBAIKAN 1: Mengganti label agar lebih menjual ---
+      badge: "Pilihan Sehat",
+      icon: <Leaf size={14} className="text-emerald-400" />
     },
     {
       id: 4,
@@ -42,7 +43,7 @@ export default function PopularMenu() {
       price: "Rp 18.000",
       image: "assets/empal-gentong.png",
       badge: "Menu Unik",
-      icon: <Sparkles size={14} className="text-amber-500" />
+      icon: <Sparkles size={14} className="text-amber-400" />
     }
   ];
 
@@ -51,7 +52,7 @@ export default function PopularMenu() {
   return (
     <section id="menu" className="py-24 bg-neutral-50 relative">
       
-      {/* --- INJEKSI CSS UNTUK ANIMASI MODAL --- */}
+      {/* --- INJEKSI CSS UNTUK ANIMASI MODAL & KILATAN CAHAYA --- */}
       <style>{`
         @keyframes fadeIn {
           from { opacity: 0; }
@@ -61,8 +62,19 @@ export default function PopularMenu() {
           from { opacity: 0; transform: scale(0.95) translateY(10px); }
           to { opacity: 1; transform: scale(1) translateY(0); }
         }
+        
+        /* PERBAIKAN 2: Animasi Shimmer yang Dipertegas */
+        @keyframes shimmer-sweep {
+          0% { transform: translateX(-150%) skewX(-20deg); }
+          50% { transform: translateX(200%) skewX(-20deg); }
+          100% { transform: translateX(200%) skewX(-20deg); }
+        }
+
         .animate-fade-in { animation: fadeIn 0.3s ease-out forwards; }
         .animate-pop-in { animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .animate-shimmer {
+          animation: shimmer-sweep 3s infinite ease-in-out;
+        }
       `}</style>
 
       <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -70,15 +82,15 @@ export default function PopularMenu() {
         {/* Header Section */}
         <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16 gap-6">
           <div className="max-w-2xl">
-            <span className="inline-block text-amber-600 font-bold tracking-wider uppercase text-sm mb-3">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-50 text-amber-600 font-bold text-sm mb-4 border border-amber-200/50 shadow-sm">
+              <Sparkles size={16} className="animate-pulse text-amber-500" />
               Pilihan Favorit
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-neutral-900 leading-tight">
-              Menu Andalan <span className="text-amber-500">Mas Khans.</span>
+              Menu Andalan <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-600">Mas Khans.</span>
             </h2>
           </div>
           
-          {/* Tombol Lihat Semua Menu (Desktop) */}
           <Link href="/menu" className="hidden md:flex items-center gap-2 text-neutral-600 hover:text-amber-600 font-semibold transition-colors group">
             Lihat Semua Menu 
             <span className="transform group-hover:translate-x-1 transition-transform">→</span>
@@ -94,12 +106,23 @@ export default function PopularMenu() {
               onClick={() => setSelectedItem(item)} 
             >
               <div className="relative h-56 w-full overflow-hidden bg-neutral-100">
+                
+                {/* --- PERBAIKAN 3: BADGE DARK MODE AGAR KILATAN TERLIHAT JELAS --- */}
                 {item.badge && (
-                  <div className="absolute top-4 left-4 z-20 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full text-xs font-bold text-neutral-900 flex items-center gap-1.5 shadow-sm border border-neutral-100">
-                    {item.icon}
-                    {item.badge}
+                  <div className="absolute top-4 left-4 z-20 overflow-hidden bg-neutral-900/80 backdrop-blur-md px-3 py-1.5 rounded-full shadow-lg border border-neutral-700/50">
+                    
+                    {/* Efek Kilatan Cahaya Putih Terang */}
+                    <div className="absolute top-0 bottom-0 left-0 w-full bg-gradient-to-r from-transparent via-white/40 to-transparent animate-shimmer z-0 pointer-events-none"></div>
+                    
+                    {/* Teks Badge diubah menjadi putih */}
+                    <div className="relative z-10 flex items-center gap-1.5 text-xs font-bold text-white tracking-wide">
+                      {item.icon}
+                      {item.badge}
+                    </div>
+
                   </div>
                 )}
+                
                 <img 
                   src={item.image} 
                   alt={item.name} 
@@ -167,10 +190,20 @@ export default function PopularMenu() {
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+              
+              {/* --- BADGE DI MODAL (Sama seperti card, Dark dengan Kilatan) --- */}
               {selectedItem.badge && (
-                <div className="absolute bottom-4 left-6 bg-amber-500 text-white px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5 shadow-md">
-                  {selectedItem.icon}
-                  {selectedItem.badge}
+                <div className="absolute bottom-4 left-6 overflow-hidden bg-neutral-900/90 backdrop-blur-md px-4 py-2 rounded-full shadow-lg border border-neutral-700/50">
+                  
+                  {/* Efek Kilatan Cahaya di Modal */}
+                  <div className="absolute top-0 bottom-0 left-0 w-full bg-gradient-to-r from-transparent via-white/40 to-transparent animate-shimmer z-0 pointer-events-none"></div>
+                  
+                  <div className="relative z-10 flex items-center gap-2 text-sm font-bold text-white tracking-wide">
+                    {/* Clone icon untuk memastikan ukurannya pas di modal */}
+                    {selectedItem.icon && React.cloneElement(selectedItem.icon as React.ReactElement, { size: 16 })}
+                    {selectedItem.badge}
+                  </div>
+
                 </div>
               )}
             </div>
@@ -185,17 +218,12 @@ export default function PopularMenu() {
               </p>
 
               <div className="flex items-center justify-between pt-6 border-t border-neutral-100">
-                <div className="flex flex-col">
-                  <span className="text-sm text-neutral-500 font-medium">Harga</span>
-                  <span className="text-2xl font-extrabold text-amber-600">
+                <div className="flex flex-col w-full text-center">
+                  <span className="text-sm text-neutral-500 font-medium uppercase tracking-widest mb-1">Harga Menu</span>
+                  <span className="text-3xl font-extrabold text-amber-600">
                     {selectedItem.price}
                   </span>
                 </div>
-                
-                <button className="flex items-center gap-2 bg-neutral-900 hover:bg-neutral-800 text-white px-6 py-3.5 rounded-full font-bold transition-all shadow-lg active:scale-95 group">
-                  <ShoppingBag size={18} className="transform group-hover:-translate-y-1 transition-transform" />
-                  Pesan
-                </button>
               </div>
             </div>
 

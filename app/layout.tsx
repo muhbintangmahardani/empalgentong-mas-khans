@@ -16,15 +16,25 @@ export const metadata: Metadata = {
   title: "Empal Gentong Mas Khans | Kuliner Otentik Cirebon di Jakarta",
   description: "Nikmati kelezatan otentik Empal Gentong khas Cirebon Mas Khans di Slipi, Jakarta Barat. Kuah santan kaya rempah, daging empuk, dan resep warisan leluhur.",
   keywords: [
+    // Kata kunci utama Anda
     "Empal Gentong Mas Khans", 
     "Empal Gentong Jakarta Barat", 
     "Empal Gentong Slipi", 
-    "Kuliner Cirebon di Jakarta"
+    "Kuliner Cirebon di Jakarta",
+    // Tambahan variasi kata kunci agar makin kuat di Google
+    "Empal Gentong Cirebon",
+    "Empal Gentong terdekat",
+    "Empal Asem Mas Khans",
+    "Nasi Lengko Spesial",
+    "Empal Gentong Rosliana"
   ],
+  authors: [{ name: "Mas Khans" }],
+  creator: "Mas Khans",
+  publisher: "Empal Gentong Mas Khans",
   openGraph: {
     title: "Empal Gentong Mas Khans | Otentik Cirebon",
     description: "Nikmati kelezatan otentik Empal Gentong khas Cirebon di Slipi, Jakarta Barat.",
-    url: "/",
+    url: "/", // Catatan: Jika nanti sudah beli domain (misal .com), ganti "/" ini dengan "https://www.domainanda.com"
     siteName: "Empal Gentong Mas Khans",
     images: [
       {
@@ -37,8 +47,15 @@ export const metadata: Metadata = {
     locale: "id_ID",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Empal Gentong Mas Khans | Kuliner Otentik",
+    description: "Nikmati kelezatan otentik Empal Gentong khas Cirebon di Slipi, Jakarta Barat. Kuah kaya rempah dan daging empuk pilihan.",
+    images: ["/assets/empal-gentong.png"],
+  },
   icons: {
-    icon: '/assets/logo.png', // Pastikan menggunakan garis miring (/) di awal
+    icon: '/assets/logo.png', // Ikon title (favicon) tetap aman
+    apple: '/assets/logo.png', // Tambahan: Agar logo muncul rapi jika user iPhone menyimpan web ini ke Home Screen mereka
   },
 };
 
@@ -49,7 +66,8 @@ export default function RootLayout({
 }>) {
   return (
     // KUNCIAN 1: Tambahkan overflow-x-hidden agar layar HP tidak bocor ke samping
-    <html lang="id" className="overflow-x-hidden">
+    // BONUS: Tambahkan scroll-smooth agar klik menu navbar bergeraknya halus
+    <html lang="id" className="overflow-x-hidden scroll-smooth">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden w-full`}
       >
