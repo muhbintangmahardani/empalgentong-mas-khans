@@ -32,7 +32,6 @@ export default function PopularMenu() {
       description: "Perpaduan nasi hangat, tahu, tempe, tauge segar, siraman saus kacang khas Cirebon dan taburan kucai. Menu vegetarian yang mengenyangkan dan kaya akan cita rasa tradisional.",
       price: "Rp 15.000",
       image: "assets/empal-gentong.png",
-      // --- PERBAIKAN 1: Mengganti label agar lebih menjual ---
       badge: "Pilihan Sehat",
       icon: <Leaf size={14} className="text-emerald-400" />
     },
@@ -62,8 +61,6 @@ export default function PopularMenu() {
           from { opacity: 0; transform: scale(0.95) translateY(10px); }
           to { opacity: 1; transform: scale(1) translateY(0); }
         }
-        
-        /* PERBAIKAN 2: Animasi Shimmer yang Dipertegas */
         @keyframes shimmer-sweep {
           0% { transform: translateX(-150%) skewX(-20deg); }
           50% { transform: translateX(200%) skewX(-20deg); }
@@ -107,14 +104,11 @@ export default function PopularMenu() {
             >
               <div className="relative h-56 w-full overflow-hidden bg-neutral-100">
                 
-                {/* --- PERBAIKAN 3: BADGE DARK MODE AGAR KILATAN TERLIHAT JELAS --- */}
                 {item.badge && (
                   <div className="absolute top-4 left-4 z-20 overflow-hidden bg-neutral-900/80 backdrop-blur-md px-3 py-1.5 rounded-full shadow-lg border border-neutral-700/50">
                     
-                    {/* Efek Kilatan Cahaya Putih Terang */}
                     <div className="absolute top-0 bottom-0 left-0 w-full bg-gradient-to-r from-transparent via-white/40 to-transparent animate-shimmer z-0 pointer-events-none"></div>
                     
-                    {/* Teks Badge diubah menjadi putih */}
                     <div className="relative z-10 flex items-center gap-1.5 text-xs font-bold text-white tracking-wide">
                       {item.icon}
                       {item.badge}
@@ -191,16 +185,14 @@ export default function PopularMenu() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
               
-              {/* --- BADGE DI MODAL (Sama seperti card, Dark dengan Kilatan) --- */}
               {selectedItem.badge && (
                 <div className="absolute bottom-4 left-6 overflow-hidden bg-neutral-900/90 backdrop-blur-md px-4 py-2 rounded-full shadow-lg border border-neutral-700/50">
                   
-                  {/* Efek Kilatan Cahaya di Modal */}
                   <div className="absolute top-0 bottom-0 left-0 w-full bg-gradient-to-r from-transparent via-white/40 to-transparent animate-shimmer z-0 pointer-events-none"></div>
                   
                   <div className="relative z-10 flex items-center gap-2 text-sm font-bold text-white tracking-wide">
-                    {/* Clone icon untuk memastikan ukurannya pas di modal */}
-                    {selectedItem.icon && React.cloneElement(selectedItem.icon as React.ReactElement, { size: 16 })}
+                    {/* --- PERBAIKAN: Menambahkan <any> pada ReactElement --- */}
+                    {selectedItem.icon && React.cloneElement(selectedItem.icon as React.ReactElement<any>, { size: 16 })}
                     {selectedItem.badge}
                   </div>
 
