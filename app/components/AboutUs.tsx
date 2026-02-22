@@ -1,9 +1,20 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Flame, Heart, Award, CheckCircle2 } from 'lucide-react';
 
 export default function AboutUs() {
+  // State untuk melacak card mana yang sedang ditekan di mobile (untuk efek highlight warna)
+  const [activeCard, setActiveCard] = useState<number | null>(null);
+
+  // Fungsi untuk menangani efek klik di mobile dengan delay singkat (HANYA WARNA)
+  const handleCardClick = (index: number) => {
+    setActiveCard(index);
+    setTimeout(() => {
+      setActiveCard(null);
+    }, 200); // Efek highlight warna hilang setelah 200ms
+  };
+
   return (
     <section id="tentang-kami" className="py-24 bg-[#FFFBEB] relative overflow-hidden">
       
@@ -45,7 +56,6 @@ export default function AboutUs() {
           {/* Judul */}
           <div>
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white text-amber-600 font-bold text-sm mb-4 border border-amber-200 shadow-sm">
-              {/* --- PERBAIKAN 1: Menambahkan animate-pulse pada ikon Heart --- */}
               <Heart size={16} className="fill-amber-500 text-amber-500 animate-pulse" />
               Cerita Mas Khans
             </span>
@@ -60,29 +70,44 @@ export default function AboutUs() {
             Berawal dari resep keluarga yang dijaga ketat keasliannya, Mas Khans hadir untuk membawa kembali kenangan rasa otentik khas Cirebon. Kami percaya bahwa makanan lezat berasal dari kejujuran bahan dan kesabaran dalam memasak.
           </p>
 
-          {/* List Keunggulan dengan Ikon */}
-          <div className="space-y-4 pt-4">
+          {/* List Keunggulan dengan Bentuk Frame/Card */}
+          <div className="space-y-5 pt-4">
             
-            {/* Poin 1 (DI-UPDATE CAPTION-NYA) */}
-            <div className="flex items-start gap-4 p-4 rounded-2xl hover:bg-white hover:shadow-lg hover:shadow-amber-100/50 transition-all border border-transparent hover:border-amber-100">
-              <div className="bg-amber-100 p-2.5 rounded-xl text-amber-600 shrink-0 mt-1">
+            {/* Poin 1 - Card Berbingkai */}
+            <div 
+              onClick={() => handleCardClick(1)}
+              className={`flex items-start gap-4 p-5 md:p-6 rounded-[1.5rem] cursor-pointer transition-colors duration-300 border shadow-sm
+                ${activeCard === 1 
+                  ? 'bg-amber-50 border-amber-300' // Mode aktif (Highlight warna)
+                  : 'bg-white border-amber-100 hover:border-amber-300 hover:bg-amber-50/50' // Mode normal/hover
+                }
+              `}
+            >
+              <div className={`p-3 rounded-xl shrink-0 transition-colors duration-300 ${activeCard === 1 ? 'bg-amber-500 text-white shadow-md' : 'bg-amber-100 text-amber-600'}`}>
                 <Flame size={24} />
               </div>
               <div>
-                {/* --- PERBAIKAN 2: Mengupdate Judul & Deskripsi --- */}
-                <h3 className="font-bold text-neutral-900 text-lg mb-1">Kaya Rempah & Kuah Kental</h3>
-                <p className="text-neutral-600 text-sm leading-relaxed">Perpaduan rempah-rempah pilihan dan santan segar menghasilkan kuah yang gurih, kental, dan beraroma harum yang khas.</p>
+                <h3 className="font-bold text-neutral-900 text-lg mb-1.5 select-none">Kaya Rempah & Kuah Kental</h3>
+                <p className="text-neutral-600 text-sm leading-relaxed select-none">Perpaduan rempah-rempah pilihan dan santan segar menghasilkan kuah yang gurih, kental, dan beraroma harum yang khas.</p>
               </div>
             </div>
 
-            {/* Poin 2 */}
-            <div className="flex items-start gap-4 p-4 rounded-2xl hover:bg-white hover:shadow-lg hover:shadow-amber-100/50 transition-all border border-transparent hover:border-amber-100">
-              <div className="bg-amber-100 p-2.5 rounded-xl text-amber-600 shrink-0 mt-1">
+            {/* Poin 2 - Card Berbingkai */}
+            <div 
+              onClick={() => handleCardClick(2)}
+              className={`flex items-start gap-4 p-5 md:p-6 rounded-[1.5rem] cursor-pointer transition-colors duration-300 border shadow-sm
+                ${activeCard === 2 
+                  ? 'bg-amber-50 border-amber-300' // Mode aktif (Highlight warna)
+                  : 'bg-white border-amber-100 hover:border-amber-300 hover:bg-amber-50/50' // Mode normal/hover
+                }
+              `}
+            >
+              <div className={`p-3 rounded-xl shrink-0 transition-colors duration-300 ${activeCard === 2 ? 'bg-amber-500 text-white shadow-md' : 'bg-amber-100 text-amber-600'}`}>
                 <CheckCircle2 size={24} />
               </div>
               <div>
-                <h3 className="font-bold text-neutral-900 text-lg mb-1">Daging Sapi Segar Pilihan</h3>
-                <p className="text-neutral-600 text-sm leading-relaxed">Hanya menggunakan potongan daging dan jeroan sapi segar setiap harinya untuk tekstur empuk yang sempurna.</p>
+                <h3 className="font-bold text-neutral-900 text-lg mb-1.5 select-none">Daging Sapi Segar Pilihan</h3>
+                <p className="text-neutral-600 text-sm leading-relaxed select-none">Hanya menggunakan potongan daging dan jeroan sapi segar setiap harinya untuk tekstur empuk yang sempurna.</p>
               </div>
             </div>
 

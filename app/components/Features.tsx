@@ -1,9 +1,20 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Sparkles, Soup, ShieldCheck, Clock } from 'lucide-react';
 
 export default function Features() {
+  // State untuk melacak card mana yang sedang ditekan di mobile (untuk efek visual instan)
+  const [activeCard, setActiveCard] = useState<number | null>(null);
+
+  // Fungsi penanganan klik dengan efek transisi singkat (seperti hover tapi untuk layar sentuh)
+  const handleCardClick = (index: number) => {
+    setActiveCard(index);
+    setTimeout(() => {
+      setActiveCard(null);
+    }, 250); // Efek memudar setelah 250ms agar terasa mulus
+  };
+
   return (
     <section className="py-24 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
@@ -25,17 +36,30 @@ export default function Features() {
           </p>
         </div>
         
-        {/* --- 3 KOTAK FITUR --- */}
+        {/* --- 3 KOTAK FITUR (Interaktif) --- */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           
-          {/* Kotak 1: Resep & Rempah (Diperbarui caption-nya) */}
-          <div className="group p-8 rounded-[2rem] bg-[#FFFBEB] border border-amber-100 hover:border-amber-300 hover:-translate-y-1 transition-all duration-300 hover:shadow-xl hover:shadow-amber-100/50 relative overflow-hidden">
+          {/* Kotak 1: Resep & Rempah */}
+          <div 
+            onClick={() => handleCardClick(1)}
+            className={`group p-8 rounded-[2rem] bg-[#FFFBEB] border transition-all duration-300 relative overflow-hidden cursor-pointer select-none
+              ${activeCard === 1 
+                ? 'border-amber-400 scale-[0.98] shadow-inner bg-amber-50' // Mode aktif di HP
+                : 'border-amber-100 md:hover:border-amber-300 md:hover:-translate-y-1 md:hover:shadow-xl md:hover:shadow-amber-100/50' // Mode normal/hover PC
+              }
+            `}
+          >
             {/* Dekorasi tipis di background */}
-            <div className="absolute top-0 right-0 p-8 opacity-5 text-amber-600 transform translate-x-4 -translate-y-4 group-hover:scale-110 transition-transform duration-500 pointer-events-none">
+            <div className="absolute top-0 right-0 p-8 opacity-5 text-amber-600 transform translate-x-4 -translate-y-4 md:group-hover:scale-110 transition-transform duration-500 pointer-events-none">
               <Soup size={100} />
             </div>
 
-            <div className="h-14 w-14 bg-amber-500 rounded-2xl flex items-center justify-center text-white mb-6 shadow-md shadow-amber-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 relative z-10">
+            <div className={`h-14 w-14 rounded-2xl flex items-center justify-center text-white mb-6 shadow-md transition-all duration-300 relative z-10
+              ${activeCard === 1 
+                ? 'bg-amber-600 scale-110 rotate-3 shadow-amber-600/30' 
+                : 'bg-amber-500 shadow-amber-500/20 md:group-hover:scale-110 md:group-hover:rotate-3'
+              }
+            `}>
               <Soup size={28} />
             </div>
             <h3 className="text-xl md:text-2xl font-bold mb-3 text-neutral-900 relative z-10">Kaya Rempah Otentik</h3>
@@ -45,13 +69,26 @@ export default function Features() {
           </div>
 
           {/* Kotak 2: Bahan Segar */}
-          <div className="group p-8 rounded-[2rem] bg-[#FFFBEB] border border-amber-100 hover:border-amber-300 hover:-translate-y-1 transition-all duration-300 hover:shadow-xl hover:shadow-amber-100/50 relative overflow-hidden">
+          <div 
+            onClick={() => handleCardClick(2)}
+            className={`group p-8 rounded-[2rem] bg-[#FFFBEB] border transition-all duration-300 relative overflow-hidden cursor-pointer select-none
+              ${activeCard === 2 
+                ? 'border-amber-400 scale-[0.98] shadow-inner bg-amber-50'
+                : 'border-amber-100 md:hover:border-amber-300 md:hover:-translate-y-1 md:hover:shadow-xl md:hover:shadow-amber-100/50'
+              }
+            `}
+          >
              {/* Dekorasi tipis di background */}
-             <div className="absolute top-0 right-0 p-8 opacity-5 text-amber-600 transform translate-x-4 -translate-y-4 group-hover:scale-110 transition-transform duration-500 pointer-events-none">
+             <div className="absolute top-0 right-0 p-8 opacity-5 text-amber-600 transform translate-x-4 -translate-y-4 md:group-hover:scale-110 transition-transform duration-500 pointer-events-none">
               <ShieldCheck size={100} />
             </div>
 
-            <div className="h-14 w-14 bg-amber-500 rounded-2xl flex items-center justify-center text-white mb-6 shadow-md shadow-amber-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 relative z-10">
+            <div className={`h-14 w-14 rounded-2xl flex items-center justify-center text-white mb-6 shadow-md transition-all duration-300 relative z-10
+              ${activeCard === 2 
+                ? 'bg-amber-600 scale-110 rotate-3 shadow-amber-600/30' 
+                : 'bg-amber-500 shadow-amber-500/20 md:group-hover:scale-110 md:group-hover:rotate-3'
+              }
+            `}>
               <ShieldCheck size={28} />
             </div>
             <h3 className="text-xl md:text-2xl font-bold mb-3 text-neutral-900 relative z-10">Bahan Segar Harian</h3>
@@ -61,13 +98,26 @@ export default function Features() {
           </div>
 
           {/* Kotak 3: Pelayanan Cepat */}
-          <div className="group p-8 rounded-[2rem] bg-[#FFFBEB] border border-amber-100 hover:border-amber-300 hover:-translate-y-1 transition-all duration-300 hover:shadow-xl hover:shadow-amber-100/50 relative overflow-hidden">
+          <div 
+            onClick={() => handleCardClick(3)}
+            className={`group p-8 rounded-[2rem] bg-[#FFFBEB] border transition-all duration-300 relative overflow-hidden cursor-pointer select-none
+              ${activeCard === 3 
+                ? 'border-amber-400 scale-[0.98] shadow-inner bg-amber-50'
+                : 'border-amber-100 md:hover:border-amber-300 md:hover:-translate-y-1 md:hover:shadow-xl md:hover:shadow-amber-100/50'
+              }
+            `}
+          >
              {/* Dekorasi tipis di background */}
-             <div className="absolute top-0 right-0 p-8 opacity-5 text-amber-600 transform translate-x-4 -translate-y-4 group-hover:scale-110 transition-transform duration-500 pointer-events-none">
+             <div className="absolute top-0 right-0 p-8 opacity-5 text-amber-600 transform translate-x-4 -translate-y-4 md:group-hover:scale-110 transition-transform duration-500 pointer-events-none">
               <Clock size={100} />
             </div>
 
-            <div className="h-14 w-14 bg-amber-500 rounded-2xl flex items-center justify-center text-white mb-6 shadow-md shadow-amber-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 relative z-10">
+            <div className={`h-14 w-14 rounded-2xl flex items-center justify-center text-white mb-6 shadow-md transition-all duration-300 relative z-10
+              ${activeCard === 3 
+                ? 'bg-amber-600 scale-110 rotate-3 shadow-amber-600/30' 
+                : 'bg-amber-500 shadow-amber-500/20 md:group-hover:scale-110 md:group-hover:rotate-3'
+              }
+            `}>
               <Clock size={28} />
             </div>
             <h3 className="text-xl md:text-2xl font-bold mb-3 text-neutral-900 relative z-10">Pelayanan Responsif</h3>

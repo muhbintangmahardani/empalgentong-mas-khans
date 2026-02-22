@@ -16,12 +16,10 @@ export const metadata: Metadata = {
   title: "Empal Gentong Mas Khans | Kuliner Otentik Cirebon di Jakarta",
   description: "Nikmati kelezatan otentik Empal Gentong khas Cirebon Mas Khans di Slipi, Jakarta Barat. Kuah santan kaya rempah, daging empuk, dan resep warisan leluhur.",
   keywords: [
-    // Kata kunci utama Anda
     "Empal Gentong Mas Khans", 
     "Empal Gentong Jakarta Barat", 
     "Empal Gentong Slipi", 
     "Kuliner Cirebon di Jakarta",
-    // Tambahan variasi kata kunci agar makin kuat di Google
     "Empal Gentong Cirebon",
     "Empal Gentong terdekat",
     "Empal Asem Mas Khans",
@@ -34,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Empal Gentong Mas Khans | Otentik Cirebon",
     description: "Nikmati kelezatan otentik Empal Gentong khas Cirebon di Slipi, Jakarta Barat.",
-    url: "https://empalgentong-mas-khans.vercel.app/", // Bagus sekali! URL Vercel sudah dimasukkan
+    url: "https://empalgentong-mas-khans.vercel.app/", 
     siteName: "Empal Gentong Mas Khans",
     images: [
       {
@@ -54,8 +52,13 @@ export const metadata: Metadata = {
     images: ["/assets/empal-gentong.png"],
   },
   icons: {
-    icon: '/assets/logo.png', // Ikon title (favicon) tetap aman
-    apple: '/assets/logo.png', // Tambahan: Agar logo muncul rapi jika user iPhone menyimpan web ini ke Home Screen mereka
+    icon: '/assets/logo.png', 
+    apple: '/assets/logo.png', 
+  },
+  
+  // --- INI KODE VERIFIKASI GOOGLE SEARCH CONSOLE ANDA ---
+  verification: {
+    google: "d6tTnJCGYqQsh-iUi_jBEQ-F_vGWm2yH_0osimwMVak",
   },
 };
 
@@ -65,7 +68,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // PERBAIKAN: Menghapus 'scroll-smooth' agar pindah halaman jadi instan dan efek fade-in bisa bekerja optimal
     <html lang="id" className="overflow-x-hidden">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden w-full`}
