@@ -1,7 +1,17 @@
 "use client"; 
 
 import React, { useState, useEffect } from 'react';
-import { MapPin, ArrowRight, Soup, Leaf, Flame, ChevronDown, Star, Sparkles, BadgeCheck } from 'lucide-react'; // <-- Tambahkan BadgeCheck di sini
+import { 
+  MapPin, 
+  ArrowRight, 
+  Soup, 
+  Leaf, 
+  Flame, 
+  ChevronDown, 
+  Star, 
+  Sparkles, 
+  BadgeCheck
+} from 'lucide-react';
 
 // --- SUB-KOMPONEN UNTUK ANIMASI ANGKA ---
 const AnimatedCounter = ({ end, decimals = 0, suffix = "" }: any) => {
@@ -34,6 +44,23 @@ const AnimatedCounter = ({ end, decimals = 0, suffix = "" }: any) => {
 
 
 export default function Hero() {
+  const [currentImage, setCurrentImage] = useState(0);
+
+  // DAFTAR GAMBAR SLIDER
+  const heroImages = [
+    "/assets/logo.png",
+    "/assets/empal-gentong.png", 
+    "/assets/farhan.jpeg"   
+  ];
+
+  // LOGIKA AUTO-SLIDE 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImage((prev) => (prev === heroImages.length - 1 ? 0 : prev + 1));
+    }, 4000); 
+    
+    return () => clearInterval(timer);
+  }, [heroImages.length]);
   
   // Fungsi universal untuk scroll mulus ke section manapun
   const scrollToSection = (id: string) => {
@@ -47,27 +74,47 @@ export default function Hero() {
     <main className="pt-32 md:pt-40 pb-10 max-w-7xl mx-auto px-6 md:px-12">
       
       {/* --- KONTEN UTAMA HERO --- */}
-      <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16 relative z-10">
+      <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-10 relative z-10">
         
         {/* --- BAGIAN KIRI (TEKS & STATISTIK) --- */}
-        <div className="flex-1 text-center md:text-left space-y-6 z-20 w-full">
+        <div className="w-full lg:w-3/5 text-center md:text-left space-y-6 z-20 pr-0 lg:pr-8 relative">
           
-          {/* Badge dengan icon BadgeCheck sebagai pengganti bendera ID */}
-          <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-amber-500/10 to-orange-500/10 text-amber-700 font-bold text-sm mb-2 border border-amber-200/50 shadow-sm backdrop-blur-sm">
+          {/* ========================================================= */}
+          {/* DEKORASI BACKGROUND TEKS (Statis & Sangat Samar: 2%) */}
+          {/* ========================================================= */}
+          
+          {/* 1. Ikon Sparkles di kanan atas */}
+          <div className="absolute -top-8 right-4 md:right-20 opacity-[0.02] -z-10 text-amber-500 transform rotate-12">
+            <Sparkles size={140} />
+          </div>
+          
+          {/* 2. Ikon Api di kiri */}
+          <div className="absolute top-1/4 -left-10 md:-left-16 opacity-[0.02] -z-10 text-orange-600 transform -rotate-12">
+            <Flame size={160} />
+          </div>
+
+          {/* 3. Ikon Daun di kanan bawah */}
+          <div className="absolute bottom-10 right-0 md:right-32 opacity-[0.02] -z-10 text-green-600 transform -rotate-6">
+            <Leaf size={120} />
+          </div>
+          
+          {/* ========================================================= */}
+
+          <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-amber-500/10 to-orange-500/10 text-amber-700 font-bold text-sm mb-2 border border-amber-200/50 shadow-sm backdrop-blur-sm relative z-10">
             <Sparkles size={16} className="text-amber-500 animate-pulse" />
             100% Resep Asli Cirebon
             <BadgeCheck size={16} className="text-amber-600" />
           </span>
           
-          <h1 className="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight text-neutral-900">
-            Kehangatan Tradisi dalam Semangkuk <span className="text-amber-500 underline decoration-amber-300/50 underline-offset-4">Empal Gentong.</span>
+          <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-6xl font-black leading-[1.15] tracking-tighter text-neutral-900 w-full relative z-10">
+            Kehangatan Tradisi dalam Semangkuk <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-600">Empal Gentong.</span>
           </h1>
           
-          <p className="text-lg text-neutral-600 md:max-w-xl leading-relaxed mx-auto md:mx-0">
+          <p className="text-lg md:text-xl text-neutral-600 max-w-2xl mx-auto md:mx-0 font-medium leading-relaxed relative z-10">
             Nikmati resep warisan Mas Khans. Daging sapi pilihan yang empuk, berpadu dengan kuah santan kaya rempah yang dimasak dalam gentong tanah liat.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 pt-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 pt-4 relative z-10">
             <button 
               onClick={() => scrollToSection('menu')}
               className="w-full sm:w-auto flex items-center justify-center gap-2 bg-[#171717] text-white px-8 py-3.5 rounded-full font-semibold hover:bg-neutral-800 transition-all active:scale-95 shadow-lg shadow-neutral-900/20"
@@ -86,7 +133,7 @@ export default function Hero() {
           </div>
 
           {/* --- BAGIAN STATISTIK ANIMASI --- */}
-          <div className="flex items-center justify-center md:justify-start gap-4 sm:gap-10 pt-8 mt-6 border-t border-amber-200/60 w-full">
+          <div className="flex items-center justify-center md:justify-start gap-4 sm:gap-10 pt-8 mt-6 border-t border-amber-200/60 w-full relative z-10">
             
             <div className="flex flex-col items-center md:items-start">
               <span className="text-xl sm:text-3xl font-extrabold text-neutral-900 flex items-center">
@@ -118,7 +165,7 @@ export default function Hero() {
         </div>
 
         {/* --- BAGIAN KANAN (GAMBAR & ANIMASI) --- */}
-        <div className="flex-1 relative w-full max-w-[500px] md:max-w-none mx-auto md:mx-0 z-10 mt-12 md:mt-0">
+        <div className="w-full lg:w-2/5 relative max-w-[500px] lg:max-w-none mx-auto lg:mx-0 z-10 mt-12 lg:mt-0 flex-shrink-0">
           
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] md:w-[120%] aspect-square border-[2px] border-dashed border-amber-400/50 rounded-full animate-spin-slower -z-10 hidden sm:block"></div>
           
@@ -142,13 +189,37 @@ export default function Hero() {
             <Soup size={24} />
           </div>
 
-          <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl shadow-amber-300/50 border-[6px] border-white/90 backdrop-blur-sm rotate-2 hover:rotate-0 transition-all duration-500 ease-in-out animate-float-slow group">
-            <img 
-              src="assets/empal-gentong.png" 
-              alt="Empal Gentong Mas Khans" 
-              className="w-full h-[350px] sm:h-[400px] md:h-[500px] object-cover transform group-hover:scale-105 transition-transform duration-700"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-amber-950/40 via-transparent to-transparent pointer-events-none"></div>
+          {/* CONTAINER SLIDER GAMBAR */}
+          <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl shadow-amber-300/50 border-[6px] border-white/90 backdrop-blur-sm rotate-2 hover:rotate-0 transition-all duration-500 ease-in-out animate-float-slow group w-full aspect-[4/5] sm:aspect-square md:h-[500px] bg-neutral-100">
+            
+            {heroImages.map((src, index) => (
+              <img 
+                key={index}
+                src={src} 
+                alt={`Menu Spesial Mas Khans ${index + 1}`} 
+                className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ease-in-out ${
+                  index === currentImage 
+                    ? 'opacity-100 scale-100 z-10' 
+                    : 'opacity-0 scale-105 z-0'
+                }`}
+              />
+            ))}
+
+            <div className="absolute inset-0 bg-gradient-to-t from-amber-950/50 via-transparent to-transparent pointer-events-none z-20"></div>
+            
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-30">
+              {heroImages.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentImage(index)}
+                  className={`h-2 rounded-full transition-all duration-500 ${
+                    index === currentImage ? 'w-8 bg-amber-400' : 'w-2 bg-white/50 hover:bg-white/80'
+                  }`}
+                  aria-label={`Lihat gambar ${index + 1}`}
+                />
+              ))}
+            </div>
+
           </div>
 
         </div>
