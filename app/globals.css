@@ -1,9 +1,27 @@
 @import "tailwindcss";
 
 /* app/globals.css */
+@theme {
+  /* Ini menambahkan utility class baru khusus untuk judul (font-playfair) */
+  --font-playfair: var(--font-playfair), ui-serif, Georgia, serif;
+}
 
-/* ... kode tailwind yang sudah ada ... */
+/* --- TRIK MENGECILKAN SEMUA UKURAN FONT SECARA GLOBAL --- */
+/* Karena Tailwind menggunakan satuan 'rem', mengecilkan ukuran dasar di 'html' 
+   akan otomatis menyusutkan semua elemen teks (h1, p, button) secara proporsional. */
+html {
+  /* Ukuran font dasar untuk layar HP & Tablet (lebih kecil agar tidak sesak) */
+  font-size: 14px; 
+}
 
+@media (min-width: 1024px) {
+  html {
+    /* Ukuran font dasar untuk layar Laptop/PC (sedikit lebih besar agar nyaman dibaca) */
+    font-size: 15px; 
+  }
+}
+
+/* --- KUMPULAN ANIMASI CUSTOM --- */
 @layer utilities {
   /* Animasi Melayang (Floating) Naik Turun */
   @keyframes float-slow {
@@ -23,8 +41,8 @@
     animation: float-medium 5s ease-in-out infinite;
   }
   
-   /* Animasi Berputar Sangat Lambat */
-   @keyframes spin-slow {
+  /* Animasi Berputar Sangat Lambat */
+  @keyframes spin-slow {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
   }

@@ -19,12 +19,12 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "Restaurant",
     "name": "Empal Gentong Mas Khans",
-    "image": "https://www.empalgentongmaskhans.com/assets/empal-gentong.png", // Nanti ganti domainnya jika sudah beli .com/.id
+    "image": "https://www.empalgentongmaskhans.com/assets/empal-gentong.png", 
     "description": "Nikmati kelezatan otentik Empal Gentong khas Cirebon Mas Khans di Slipi, Jakarta Barat.",
     "servesCuisine": ["Indonesian", "Cirebon"],
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Slipi", // Anda bisa melengkapinya dengan alamat jalan yang lebih detail
+      "streetAddress": "Slipi", 
       "addressLocality": "Jakarta Barat",
       "addressRegion": "DKI Jakarta",
       "addressCountry": "ID"
@@ -34,8 +34,8 @@ export default function Home() {
   };
 
   return (
-    // KUNCIAN 2: Tambahkan overflow-x-hidden, w-full, dan max-w-[100vw]
-    <div className="min-h-screen bg-[#FFFBEB] font-sans text-[#171717] overflow-x-hidden w-full max-w-[100vw]">
+    // PERHATIKAN BARIS INI: Kata 'font-sans' sudah saya hapus!
+    <div className="min-h-screen bg-[#FFFBEB] text-[#171717] overflow-x-hidden w-full max-w-[100vw]">
       
       {/* --- INJEKSI SCRIPT SEO KE DALAM HTML --- */}
       <script

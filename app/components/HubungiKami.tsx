@@ -10,7 +10,7 @@ import {
   CheckCircle2, 
   Send 
 } from 'lucide-react';
-import { motion, Variants } from 'framer-motion'; // PERBAIKAN 1: Tambahkan 'Variants' di sini
+import { motion, Variants } from 'framer-motion';
 
 // --- KOMPONEN IKON TIKTOK (KUSTOM) ---
 const TikTokIcon = ({ size = 20, className = "" }) => (
@@ -20,7 +20,6 @@ const TikTokIcon = ({ size = 20, className = "" }) => (
 );
 
 // --- VARIANT ANIMASI FRAMER MOTION UNTUK CATERING ---
-// PERBAIKAN 2: Tambahkan ': Variants' setelah nama variabel
 const containerVariants: Variants = {
   hidden: { opacity: 1 },
   visible: {
@@ -32,7 +31,6 @@ const containerVariants: Variants = {
   },
 };
 
-// PERBAIKAN 3: Tambahkan ': Variants' setelah nama variabel
 const itemVariants: Variants = {
   hidden: { opacity: 0, x: -20 }, 
   visible: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 100 } },
@@ -70,48 +68,50 @@ export default function HubungiKami() {
             </div>
             
             <div className="flex flex-col gap-4 flex-grow">
+              
               {/* WhatsApp */}
-              <a href="https://wa.me/6289664031115" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between w-full p-4 rounded-2xl border-2 border-white bg-white hover:border-green-500 hover:bg-green-50 transition-all group">
-                <div className="flex items-center gap-4">
-                  <div className="p-2.5 bg-green-100 text-green-600 rounded-full group-hover:bg-green-500 group-hover:text-white transition-colors">
+              <a href="https://wa.me/6289664031115" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between w-full p-4 rounded-2xl border-2 border-white bg-white hover:border-green-500 hover:bg-green-50 transition-all group overflow-hidden">
+                <div className="flex items-center gap-3 sm:gap-4 w-full min-w-0">
+                  <div className="p-2.5 bg-green-100 text-green-600 rounded-full group-hover:bg-green-500 group-hover:text-white transition-colors shrink-0">
                     <MessageCircle size={20} />
                   </div>
-                  <div className="text-left">
-                    <p className="text-xs font-bold text-neutral-400 uppercase tracking-wider mb-0.5">WhatsApp</p>
-                    <p className="font-bold text-neutral-800 group-hover:text-green-600 transition-colors">+62 896 6403 1115</p>
+                  <div className="text-left flex-1 min-w-0">
+                    <p className="text-[10px] sm:text-xs font-bold text-neutral-400 uppercase tracking-wider mb-0.5">WhatsApp</p>
+                    <p className="font-bold text-sm sm:text-base text-neutral-800 group-hover:text-green-600 transition-colors truncate">+62 896 6403 1115</p>
                   </div>
                 </div>
               </a>
 
               {/* Instagram */}
-              <a href="https://instagram.com/empalgentongmaskhans" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between w-full p-4 rounded-2xl border-2 border-white bg-white hover:border-pink-500 hover:bg-pink-50 transition-all group">
-                <div className="flex items-center gap-4">
-                  <div className="p-2.5 bg-pink-100 text-pink-500 rounded-full group-hover:bg-pink-500 group-hover:text-white transition-colors">
+              <a href="https://instagram.com/empalgentongmaskhans" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between w-full p-4 rounded-2xl border-2 border-white bg-white hover:border-pink-500 hover:bg-pink-50 transition-all group overflow-hidden">
+                <div className="flex items-center gap-3 sm:gap-4 w-full min-w-0">
+                  <div className="p-2.5 bg-pink-100 text-pink-500 rounded-full group-hover:bg-pink-500 group-hover:text-white transition-colors shrink-0">
                     <Instagram size={20} />
                   </div>
-                  <div className="text-left">
-                    <p className="text-xs font-bold text-neutral-400 uppercase tracking-wider mb-0.5">Instagram</p>
-                    <p className="font-bold text-neutral-800 group-hover:text-pink-500 transition-colors">@empalgentongmaskhans</p>
+                  <div className="text-left flex-1 min-w-0">
+                    <p className="text-[10px] sm:text-xs font-bold text-neutral-400 uppercase tracking-wider mb-0.5">Instagram</p>
+                    <p className="font-bold text-sm sm:text-base text-neutral-800 group-hover:text-pink-500 transition-colors truncate">@empalgentongmaskhans</p>
                   </div>
                 </div>
               </a>
 
               {/* TikTok */}
-              <a href="https://tiktok.com/@empalgentongmaskhans" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between w-full p-4 rounded-2xl border-2 border-white bg-white hover:border-neutral-900 hover:bg-neutral-50 transition-all group">
-                <div className="flex items-center gap-4">
-                  <div className="p-2.5 bg-neutral-100 text-neutral-900 rounded-full group-hover:bg-neutral-900 group-hover:text-white transition-colors">
+              <a href="https://tiktok.com/@empalgentongmaskhans" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between w-full p-4 rounded-2xl border-2 border-white bg-white hover:border-neutral-900 hover:bg-neutral-50 transition-all group overflow-hidden">
+                <div className="flex items-center gap-3 sm:gap-4 w-full min-w-0">
+                  <div className="p-2.5 bg-neutral-100 text-neutral-900 rounded-full group-hover:bg-neutral-900 group-hover:text-white transition-colors shrink-0">
                     <TikTokIcon size={20} />
                   </div>
-                  <div className="text-left">
-                    <p className="text-xs font-bold text-neutral-400 uppercase tracking-wider mb-0.5">TikTok</p>
-                    <p className="font-bold text-neutral-800 group-hover:text-neutral-900 transition-colors">@empalgentongmaskhans</p>
+                  <div className="text-left flex-1 min-w-0">
+                    <p className="text-[10px] sm:text-xs font-bold text-neutral-400 uppercase tracking-wider mb-0.5">TikTok</p>
+                    <p className="font-bold text-sm sm:text-base text-neutral-800 group-hover:text-neutral-900 transition-colors truncate">@empalgentongmaskhans</p>
                   </div>
                 </div>
               </a>
+
             </div>
           </div>
 
-          {/* CARD 2: ORDER ONLINE (Informasi Statis) */}
+          {/* CARD 2: ORDER ONLINE */}
           <div className="bg-[#FFFBEB] rounded-3xl p-8 border border-neutral-100 shadow-xl shadow-neutral-200/40 flex flex-col hover:-translate-y-1 transition-transform duration-300">
             <div className="flex items-center gap-4 mb-8">
               <div className="p-3 bg-amber-50 text-amber-500 rounded-2xl">
@@ -121,30 +121,30 @@ export default function HubungiKami() {
             </div>
 
             <div className="flex flex-col gap-4 flex-grow">
-              {/* GoFood (Statis) */}
+              {/* GoFood */}
               <div className="flex items-center w-full p-4 rounded-2xl border border-neutral-200 bg-white">
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3 sm:gap-4 w-full min-w-0">
                   <div className="w-12 h-12 shrink-0 rounded-full overflow-hidden border border-neutral-100 flex items-center justify-center bg-white shadow-sm p-1">
                     <img src="/assets/gofood.png" alt="GoFood" className="w-full h-full object-contain" />
                   </div>
-                  <div className="text-left">
+                  <div className="text-left flex-1 min-w-0">
                     <span className="font-bold text-neutral-800 block mb-0.5">GoFood</span>
-                    <span className="text-[13px] font-medium text-neutral-500 leading-tight block">
+                    <span className="text-xs sm:text-[13px] font-medium text-neutral-500 leading-tight block truncate">
                       Cari: <span className="text-red-600 font-bold">Empal Gentong Rosliana</span>
                     </span>
                   </div>
                 </div>
               </div>
 
-              {/* GrabFood (Statis) */}
+              {/* GrabFood */}
               <div className="flex items-center w-full p-4 rounded-2xl border border-neutral-200 bg-white">
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3 sm:gap-4 w-full min-w-0">
                   <div className="w-12 h-12 shrink-0 rounded-full overflow-hidden border border-neutral-100 flex items-center justify-center bg-white shadow-sm p-1">
                     <img src="/assets/grabfood.png" alt="GrabFood" className="w-full h-full object-contain" />
                   </div>
-                  <div className="text-left">
+                  <div className="text-left flex-1 min-w-0">
                     <span className="font-bold text-neutral-800 block mb-0.5">GrabFood</span>
-                    <span className="text-[13px] font-medium text-neutral-500 leading-tight block">
+                    <span className="text-xs sm:text-[13px] font-medium text-neutral-500 leading-tight block truncate">
                       Cari: <span className="text-green-700 font-bold">Empal Gentong Rosliana</span>
                     </span>
                   </div>
@@ -152,7 +152,6 @@ export default function HubungiKami() {
               </div>
             </div>
 
-            {/* Teks Promo disesuaikan */}
             <div className="mt-6 text-center bg-amber-50/50 p-3 rounded-xl border border-amber-100/50">
               <p className="text-sm font-semibold text-amber-700">
                 📱 Buka aplikasinya & cari nama kedai kami!
@@ -160,13 +159,11 @@ export default function HubungiKami() {
             </div>
           </div>
 
-          {/* CARD 3: CATERING & SPESIAL (Beranimasi) */}
+          {/* CARD 3: CATERING & SPESIAL */}
           <div className="bg-gradient-to-br from-neutral-900 to-neutral-800 rounded-3xl p-8 shadow-2xl shadow-amber-500/20 flex flex-col relative overflow-hidden hover:-translate-y-1 transition-transform duration-300 ring-1 ring-amber-500/20">
             
-            {/* Efek Glow Oranye di Latar Belakang */}
             <div className="absolute -top-20 -right-20 w-60 h-60 bg-amber-500/20 blur-3xl rounded-full pointer-events-none"></div>
 
-            {/* Ikon Dekoratif Samar */}
             <div className="absolute bottom-0 right-0 p-8 opacity-5 pointer-events-none">
               <UtensilsCrossed size={120} className="text-amber-200" />
             </div>
@@ -178,7 +175,6 @@ export default function HubungiKami() {
               <h3 className="text-2xl font-bold text-white">Catering & Spesial</h3>
             </div>
 
-            {/* Animasi Daftar Centang Menggunakan Framer Motion */}
             <motion.ul 
               className="relative z-10 space-y-4 mb-8 flex-grow"
               variants={containerVariants}
@@ -200,12 +196,11 @@ export default function HubungiKami() {
               ))}
             </motion.ul>
 
-            {/* Tombol Hubungi */}
             <a 
               href="https://wa.me/6289664031115" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="relative z-10 flex items-center justify-center gap-2 w-full bg-amber-500 hover:bg-amber-400 text-neutral-900 font-bold py-4 rounded-2xl transition-colors shadow-lg shadow-amber-500/20 active:scale-95 mt-auto"
+              className="relative z-10 flex items-center justify-center gap-2 w-full bg-amber-500 hover:bg-amber-400 text-neutral-900 font-bold py-4 rounded-2xl transition-colors shadow-lg shadow-amber-500/20 active:scale-95 mt-auto text-sm sm:text-base"
             >
               <MessageCircle size={20} />
               Hubungi via WhatsApp
