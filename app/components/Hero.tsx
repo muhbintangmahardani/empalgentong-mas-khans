@@ -125,13 +125,12 @@ export default function Hero() {
           </h1>
           
           {/* SUBJUDUL/PARAGRAF */}
-          {/* OPTIMASI: <br> dihapus agar teks mengalir natural. mt-8 ditambahkan agar ada space yang pas dengan Judul di atasnya */}
+          {/* OPTIMASI SEO: Menambahkan kata kunci "Slipi, Jakarta Barat" dengan tag <strong> */}
           <p className="text-sm md:text-lg text-neutral-500 max-w-xl mx-auto md:mx-0 font-medium leading-[1.8] md:leading-loose relative z-10 mb-8 md:mb-10 mt-6 md:mt-8 px-2 md:px-0">
-            Nikmati resep warisan Mas Khans. Daging sapi pilihan yang empuk, berpadu dengan kuah santan kaya rempah yang diracik untuk kelezatan autentik khas Cirebon.
+            Nikmati resep warisan Mas Khans. Daging sapi pilihan yang empuk, berpadu dengan kuah santan kaya rempah yang diracik untuk kelezatan autentik khas Cirebon, kini hadir di <strong className="text-neutral-700">Slipi, Jakarta Barat</strong>.
           </p>
 
           {/* TOMBOL */}
-          {/* OPTIMASI: Ditambahkan w-[85%] mx-auto khusus untuk versi mobile agar tombol presisi di tengah dan tidak terlalu melebar */}
           <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-3 md:gap-4 relative z-10 w-full">
             <button 
               onClick={() => scrollToSection('menu')}

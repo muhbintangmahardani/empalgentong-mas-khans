@@ -25,8 +25,9 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-0 left-0 right-0 w-full max-w-[100vw] z-50 border-b border-amber-100 bg-[#FFFBEB]/90 backdrop-blur-md">
-      {/* --- CONTAINER UTAMA (py-3 untuk navbar lebih ramping) --- */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 py-3 flex items-center justify-between">
+      {/* --- CONTAINER UTAMA --- */}
+      {/* Menggunakan py-3.5 agar keseluruhan navbar punya ruang atas-bawah yang lega */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 py-3.5 flex items-center justify-between">
         
         {/* LOGO */}
         <div className="flex items-center gap-3 z-50 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
@@ -65,9 +66,11 @@ export default function Navbar() {
 
         {/* TOMBOL PESAN & HAMBURGER */}
         <div className="flex items-center gap-4 z-50">
+          
+          {/* PERBAIKAN: py-2 diubah menjadi py-2.5, dan ditambahkan mt-0.5 agar proporsinya pas tidak mepet atas */}
           <button 
             onClick={(e) => handleScroll(e, 'contact')}
-            className="hidden sm:flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-full text-sm font-bold transition-all shadow-md shadow-amber-200/50 active:scale-95"
+            className="hidden sm:flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white px-5 py-2.5 mt-0.5 rounded-full text-sm font-bold transition-all shadow-md shadow-amber-200/50 active:scale-95"
           >
             <ShoppingBag size={16} />
             Pesan Sekarang
