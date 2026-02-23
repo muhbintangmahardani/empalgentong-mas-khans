@@ -111,12 +111,15 @@ export default function Hero() {
           </div>
           
           {/* JUDUL UTAMA */}
+          {/* OPTIMASI: Semua <br> paksa dihapus, diganti dengan 3 kelompok whitespace-nowrap agar tidak ada kata yang terpisah sendirian */}
           <h1 
-            className="text-4xl sm:text-5xl lg:text-6xl xl:text-[4rem] font-black leading-tight text-neutral-900 w-full relative z-10 tracking-tight"
+            className="text-4xl sm:text-5xl lg:text-6xl xl:text-[4rem] font-black leading-[1.3] md:leading-tight text-neutral-900 w-full relative z-10 tracking-tight"
             style={{ fontFamily: 'var(--font-playfair), serif' }} 
           >
-            Kehangatan Tradisi <br className="hidden md:block"/> dalam Semangkuk <br className="block md:hidden"/> 
-            <span className="relative inline-block mt-1 md:mt-0 text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-600 italic pb-1 md:pb-2">
+            <span className="whitespace-nowrap">Kehangatan Tradisi</span>{" "}
+            <span className="whitespace-nowrap">dalam Semangkuk</span>{" "}
+            <br className="hidden lg:block" />
+            <span className="relative inline-block mt-2 lg:mt-0 text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-600 italic pb-1 md:pb-2 whitespace-nowrap">
                Empal Gentong.
                <svg className="absolute w-full h-2 md:h-3 -bottom-0.5 md:-bottom-1 left-0 text-amber-300/40 -z-10" viewBox="0 0 100 10" preserveAspectRatio="none">
                  <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="4" fill="transparent"/>
@@ -125,9 +128,8 @@ export default function Hero() {
           </h1>
           
           {/* SUBJUDUL/PARAGRAF */}
-          {/* OPTIMASI SEO: Menambahkan kata kunci "Slipi, Jakarta Barat" dengan tag <strong> */}
-          <p className="text-sm md:text-lg text-neutral-500 max-w-xl mx-auto md:mx-0 font-medium leading-[1.8] md:leading-loose relative z-10 mb-8 md:mb-10 mt-6 md:mt-8 px-2 md:px-0">
-            Nikmati resep warisan Mas Khans. Daging sapi pilihan yang empuk, berpadu dengan kuah santan kaya rempah yang diracik untuk kelezatan autentik khas Cirebon, kini hadir di <strong className="text-neutral-700">Slipi, Jakarta Barat</strong>.
+          <p className="text-sm md:text-lg text-neutral-500 max-w-xl mx-auto md:mx-0 font-medium leading-[1.8] md:leading-loose relative z-10 mb-8 md:mb-10 mt-6 md:mt-8 px-4 md:px-0">
+            Nikmati resep warisan Mas Khans. Daging sapi pilihan yang empuk, berpadu dengan kuah santan kaya rempah yang diracik untuk kelezatan autentik khas Cirebon, kini hadir di <strong className="text-neutral-700 whitespace-nowrap">Slipi, Jakarta Barat</strong>.
           </p>
 
           {/* TOMBOL */}

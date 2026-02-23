@@ -9,7 +9,7 @@ const testimonials = [
     id: 1,
     name: "Artha Nugraha",
     role: "Mahasiswa",
-    quote: "Empal gentong paling otentik di Jakarta! Kuahnya kental, dagingnya empuk banget. Rempahnya bikin nagih. Wajib dicoba!",
+    quote: "Empal gentong paling autentik di Jakarta! Kuahnya kental, dagingnya juga empuk. Rempahnya bikin nagih. Wajib dicoba!",
     rating: 5,
     image: "/assets/artha.png"
   },
@@ -17,7 +17,7 @@ const testimonials = [
     id: 2,
     name: "Siti Aminah",
     role: "Ibu Rumah Tangga",
-    quote: "Tempatnya nyaman buat keluarga. Pelayanan ramah, Nasi Lengko-nya juara. Anak-anak suka banget sama sate kambing mudanya.",
+    quote: "Tempatnya nyaman buat keluarga. Pelayanan ramah, Nasi Lengko-nya juara.",
     rating: 5,
     image: null
   },
@@ -31,9 +31,9 @@ const testimonials = [
   },
   {
     id: 4,
-    name: "Bintang Mahardani",
-    role: "Pecinta Kuliner",
-    quote: "Ini rasanya enak banget, maknyus yang ga ada duanya. Sambalnya juga nendang! Recommended.",
+    name: "Muhammad Bintang Mahardani",
+    role: "Wiraswasta",
+    quote: "Kulineran cirebon yang menggugah selera buat makan. Terutama sambelnya sih gokil! Recommended.",
     rating: 5,
     image: "/assets/bintang.jpg"
   },
@@ -41,7 +41,7 @@ const testimonials = [
     id: 5,
     name: "Achmad Zulfikar",
     role: "Mahasiswa",
-    quote: "Harga terjangkau buat rasa seenak ini. Bukan maen dah rasanya, ajib bin mantap!",
+    quote: "Harga terjangkau buat rasa seenak ini. Bukan maen dah rasanya, Ajib bin Mantap!",
     rating: 4,
     image: "/assets/zul.jpg"
   },
