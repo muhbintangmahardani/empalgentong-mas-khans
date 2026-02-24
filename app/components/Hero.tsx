@@ -47,7 +47,7 @@ export default function Hero() {
   // DAFTAR GAMBAR SLIDER
   const heroImages = [
     "/assets/logo.png",
-    "/assets/empal-gentong.png", 
+    "/assets/empalgentong.png", 
     "/assets/farhan.jpeg"   
   ];
 
