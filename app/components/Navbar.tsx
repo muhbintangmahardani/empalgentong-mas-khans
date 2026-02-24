@@ -25,9 +25,9 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-0 left-0 right-0 w-full max-w-[100vw] z-50 border-b border-amber-100 bg-[#FFFBEB]/90 backdrop-blur-md">
+      
       {/* --- CONTAINER UTAMA --- */}
-      {/* Menggunakan py-3.5 agar keseluruhan navbar punya ruang atas-bawah yang lega */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 py-3.5 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 py-4 flex items-center justify-between">
         
         {/* LOGO */}
         <div className="flex items-center gap-3 z-50 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
@@ -36,13 +36,15 @@ export default function Navbar() {
             alt="Logo Mas Khans" 
             className="h-8 w-8 md:h-9 md:w-9 object-contain drop-shadow-sm" 
           />
-          <span className="text-lg md:text-xl font-extrabold tracking-tight">
+          {/* Ukuran logo dipertahankan elegan di 18px (mobile) dan 20px (desktop) */}
+          <span className="text-[18px] md:text-[20px] font-extrabold tracking-tight">
             Mas Khans<span className="text-amber-500">.</span>
           </span>
         </div>
 
         {/* MENU DESKTOP */}
-        <div className="hidden lg:flex items-center gap-7 font-semibold text-neutral-600 text-sm">
+        {/* OPTIMASI: Menaikkan ukuran font menu desktop dari text-sm ke text-[15px] agar lebih terbaca tapi tidak bulky */}
+        <div className="hidden lg:flex items-center gap-7 font-semibold text-neutral-600 text-[15px]">
           {[
             { name: 'Beranda', id: '' },
             { name: 'Tentang Kami', id: 'tentang-kami' },
@@ -67,15 +69,16 @@ export default function Navbar() {
         {/* TOMBOL PESAN & HAMBURGER */}
         <div className="flex items-center gap-4 z-50">
           
-          {/* PERBAIKAN: py-2 diubah menjadi py-2.5, dan ditambahkan mt-0.5 agar proporsinya pas tidak mepet atas */}
+          {/* OPTIMASI: Tombol desktop disesuaikan ke text-[14px] md:text-[15px] */}
           <button 
             onClick={(e) => handleScroll(e, 'contact')}
-            className="hidden sm:flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white px-5 py-2.5 mt-0.5 rounded-full text-sm font-bold transition-all shadow-md shadow-amber-200/50 active:scale-95"
+            className="hidden sm:flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white px-5 py-2.5 rounded-full text-[14px] md:text-[15px] font-bold transition-all shadow-md shadow-amber-200/50 active:scale-95"
           >
             <ShoppingBag size={16} />
             Pesan Sekarang
           </button>
 
+          {/* Ikon Hamburger */}
           <button 
             onClick={toggleMenu}
             className="lg:hidden p-2 -mr-2 text-neutral-600 hover:text-amber-600 transition-colors focus:outline-none"
@@ -91,17 +94,19 @@ export default function Navbar() {
           isOpen ? "max-h-[450px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
+        {/* OPTIMASI: Gap dilonggarkan sedikit agar mudah ditap */}
         <div className="px-8 py-6 flex flex-col gap-5">
-          <a href="#" onClick={(e) => handleScroll(e, '')} className="hover:text-amber-600 transition-colors font-bold text-sm">Beranda</a>  
-          <a href="#tentang-kami" onClick={(e) => handleScroll(e, 'tentang-kami')} className="hover:text-amber-600 transition-colors font-bold text-sm">Tentang Kami</a>
-          <a href="#menu" onClick={(e) => handleScroll(e, 'menu')} className="hover:text-amber-600 transition-colors font-bold text-sm">Lihat Menu</a>
-          <a href="#faq" onClick={(e) => handleScroll(e, 'faq')} className="hover:text-amber-600 transition-colors font-bold text-sm">FAQ</a>
-          <a href="#testimonials" onClick={(e) => handleScroll(e, 'testimonials')} className="hover:text-amber-600 transition-colors font-bold text-sm">Testimonial</a>
-          <a href="#location" onClick={(e) => handleScroll(e, 'location')} className="hover:text-amber-600 transition-colors font-bold text-sm">Temukan Kami</a>
+          {/* OPTIMASI: Teks menu mobile naik dari text-sm ke text-[15px] agar nyaman dibaca dan di-tap */}
+          <a href="#" onClick={(e) => handleScroll(e, '')} className="hover:text-amber-600 transition-colors font-bold text-[15px]">Beranda</a>  
+          <a href="#tentang-kami" onClick={(e) => handleScroll(e, 'tentang-kami')} className="hover:text-amber-600 transition-colors font-bold text-[15px]">Tentang Kami</a>
+          <a href="#menu" onClick={(e) => handleScroll(e, 'menu')} className="hover:text-amber-600 transition-colors font-bold text-[15px]">Lihat Menu</a>
+          <a href="#faq" onClick={(e) => handleScroll(e, 'faq')} className="hover:text-amber-600 transition-colors font-bold text-[15px]">FAQ</a>
+          <a href="#testimonials" onClick={(e) => handleScroll(e, 'testimonials')} className="hover:text-amber-600 transition-colors font-bold text-[15px]">Testimonial</a>
+          <a href="#location" onClick={(e) => handleScroll(e, 'location')} className="hover:text-amber-600 transition-colors font-bold text-[15px]">Temukan Kami</a>
           
           <button 
             onClick={(e) => handleScroll(e, 'contact')}
-            className="sm:hidden mt-2 flex items-center justify-center gap-2 w-full bg-amber-500 hover:bg-amber-600 text-white px-5 py-3 rounded-full font-bold transition-all shadow-md active:scale-95 text-sm"
+            className="sm:hidden mt-3 flex items-center justify-center gap-2 w-full bg-amber-500 hover:bg-amber-600 text-white px-5 py-3 rounded-full font-bold transition-all shadow-md active:scale-95 text-[15px]"
           >
             <ShoppingBag size={18} />
             Pesan Sekarang

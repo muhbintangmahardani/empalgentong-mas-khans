@@ -54,27 +54,28 @@ const renderStars = (rating: number) => {
   return [...Array(5)].map((_, i) => (
     <Star 
       key={i} 
-      size={16} 
-      className={`${i < rating ? 'fill-amber-400 text-amber-400' : 'fill-neutral-600 text-neutral-600'}`} 
+      size={14} // OPTIMASI: Ukuran bintang di mobile lebih pas
+      className={`md:w-4 md:h-4 ${i < rating ? 'fill-amber-400 text-amber-400' : 'fill-neutral-600 text-neutral-600'}`} 
     />
   ));
 };
 
 // --- KOMPONEN KARTU TESTIMONIAL ---
 const TestimonialCard = ({ item, className = "" }: { item: any, className?: string }) => (
-  <div className={`w-[85vw] sm:w-[340px] md:w-[400px] max-w-full bg-white/5 backdrop-blur-md p-6 md:p-8 rounded-[2rem] border border-white/10 relative flex flex-col shrink-0 hover:bg-white/10 transition-colors duration-300 group ${className}`}>
-    <Quote size={80} className="absolute top-4 right-4 text-white/5 transform rotate-12 pointer-events-none group-hover:text-amber-500/10 transition-colors duration-300" />
+  <div className={`w-[85vw] sm:w-[340px] md:w-[400px] max-w-full bg-white/5 backdrop-blur-md p-6 md:p-8 rounded-[1.5rem] md:rounded-[2rem] border border-white/10 relative flex flex-col shrink-0 hover:bg-white/10 transition-colors duration-300 group ${className}`}>
+    <Quote size={80} className="absolute top-4 right-4 text-white/5 transform rotate-12 pointer-events-none group-hover:text-amber-500/10 transition-colors duration-300 md:w-20 md:h-20 w-16 h-16" />
 
-    <div className="flex gap-1 mb-6 relative z-10">
+    <div className="flex gap-1 mb-4 md:mb-6 relative z-10">
       {renderStars(item.rating)}
     </div>
 
-    <blockquote className="text-neutral-300 text-base md:text-lg leading-relaxed mb-8 relative z-10 flex-grow italic">
+    {/* PERBAIKAN: Teks quote dikembalikan ke rata kiri (text-left) natural */}
+    <blockquote className="text-neutral-300 text-[14px] md:text-[15px] leading-relaxed mb-6 md:mb-8 relative z-10 flex-grow italic text-left">
       "{item.quote}"
     </blockquote>
 
-    <div className="flex items-center gap-4 relative z-10 mt-auto">
-      <div className="w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden border-2 border-amber-500/50 shadow-md shrink-0 flex items-center justify-center bg-neutral-800 text-amber-500">
+    <div className="flex items-center gap-3 md:gap-4 relative z-10 mt-auto">
+      <div className="w-10 h-10 md:w-14 md:h-14 rounded-full overflow-hidden border-2 border-amber-500/50 shadow-md shrink-0 flex items-center justify-center bg-neutral-800 text-amber-500">
         {item.image ? (
           <img 
             src={item.image} 
@@ -85,12 +86,13 @@ const TestimonialCard = ({ item, className = "" }: { item: any, className?: stri
             }}
           />
         ) : (
-          <User size={24} />
+          <User size={20} className="md:w-6 md:h-6" />
         )}
       </div>
       <div>
-        <h4 className="font-bold text-white text-base md:text-lg">{item.name}</h4>
-        <p className="text-sm text-neutral-400 font-medium">{item.role}</p>
+        {/* OPTIMASI: Nama dan role disesuaikan ukurannya */}
+        <h4 className="font-bold text-white text-[15px] md:text-lg leading-tight">{item.name}</h4>
+        <p className="text-xs md:text-sm text-neutral-400 font-medium mt-0.5">{item.role}</p>
       </div>
     </div>
   </div>
@@ -99,7 +101,7 @@ const TestimonialCard = ({ item, className = "" }: { item: any, className?: stri
 export default function TestimonialSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const isAutoScrolling = useRef(false); // Kunci agar geser manual & otomatis tidak berantem
+  const isAutoScrolling = useRef(false);
 
   // 1. Logika Interval Otomatis
   useEffect(() => {
@@ -119,10 +121,8 @@ export default function TestimonialSection() {
       const cards = container.children;
       
       if (cards[activeIndex]) {
-        isAutoScrolling.current = true; // Kunci scroll manual
+        isAutoScrolling.current = true;
         const card = cards[activeIndex] as HTMLElement;
-        
-        // Rumus matematika untuk menaruh card pas di tengah layar
         const scrollLeft = card.offsetLeft - container.offsetLeft - (container.clientWidth - card.clientWidth) / 2;
         
         container.scrollTo({
@@ -130,7 +130,6 @@ export default function TestimonialSection() {
           behavior: 'smooth'
         });
 
-        // Buka kunci setelah animasi geser selesai (sekitar 600ms)
         setTimeout(() => {
           isAutoScrolling.current = false;
         }, 600);
@@ -138,9 +137,9 @@ export default function TestimonialSection() {
     }
   }, [activeIndex]);
 
-  // 3. Deteksi Geser Manual (Saat user pakai jari)
+  // 3. Deteksi Geser Manual
   const handleManualScroll = () => {
-    if (!scrollRef.current || isAutoScrolling.current) return; // Abaikan jika sedang jalan otomatis
+    if (!scrollRef.current || isAutoScrolling.current) return;
     
     const container = scrollRef.current;
     const centerPosition = container.scrollLeft + container.clientWidth / 2;
@@ -148,7 +147,6 @@ export default function TestimonialSection() {
     let closestIndex = 0;
     let minDistance = Infinity;
 
-    // Cari card mana yang posisinya paling dekat dengan bagian tengah layar
     Array.from(container.children).forEach((child, index) => {
       const childElement = child as HTMLElement;
       const childCenter = childElement.offsetLeft - container.offsetLeft + childElement.clientWidth / 2;
@@ -166,7 +164,8 @@ export default function TestimonialSection() {
   };
 
   return (
-    <section id="testimonials" className="py-24 bg-gradient-to-b from-neutral-900 to-neutral-800 overflow-hidden relative">
+    // OPTIMASI: Padding konsisten py-20 mobile, py-24 desktop
+    <section id="testimonials" className="py-20 md:py-24 bg-gradient-to-b from-neutral-900 to-neutral-800 overflow-hidden relative">
        
        <style>{`
         @keyframes scroll-left {
@@ -195,25 +194,29 @@ export default function TestimonialSection() {
         }
       `}</style>
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 mb-12 text-center relative z-10">
-        <div className="inline-flex items-center justify-center p-3 bg-amber-500/10 rounded-2xl text-amber-500 mb-6">
-            <MessageSquareQuote size={28} />
+      <div className="max-w-7xl mx-auto px-6 md:px-12 mb-10 md:mb-12 text-center relative z-10">
+        <div className="inline-flex items-center justify-center p-3 md:p-3.5 bg-amber-500/10 rounded-2xl text-amber-500 mb-5 md:mb-6">
+            <MessageSquareQuote size={24} className="md:w-7 md:h-7" />
         </div>
         <br />
-        <span className="inline-block text-amber-500 font-bold tracking-wider uppercase text-sm mb-3">
+        <span className="inline-block text-amber-500 font-bold tracking-wider uppercase text-[11px] md:text-sm mb-2 md:mb-3">
           Kata Mereka
         </span>
-        <h2 className="text-3xl md:text-5xl font-extrabold text-white leading-tight">
-          Cerita Kepuasan <span className="text-amber-500">Pelanggan.</span>
+        
+        {/* OPTIMASI: Judul text-4xl mobile, whitespace-nowrap */}
+        <h2 className="text-4xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-[1.2] md:leading-tight tracking-tight">
+          <span className="whitespace-nowrap">Cerita Kepuasan</span>{" "}
+          <span className="text-amber-500 whitespace-nowrap">Pelanggan.</span>
         </h2>
-        <p className="text-lg text-neutral-400 max-w-2xl mx-auto mt-4">
+        
+        {/* OPTIMASI: Paragraf text-[15px] mobile */}
+        <p className="text-[15px] sm:text-base md:text-lg text-neutral-400 max-w-2xl mx-auto mt-4 leading-[1.8] md:leading-relaxed">
           Bukti nyata dari mereka yang telah merasakan kelezatan otentik Mas Khans.
         </p>
       </div>
       
       <div className="relative py-4 group-hover:paused">
         
-        {/* Gradient Fade: Hanya Desktop */}
         <div className="absolute inset-y-0 left-0 w-24 md:w-48 bg-gradient-to-r from-neutral-900 to-transparent z-20 pointer-events-none hidden lg:block"></div>
         <div className="absolute inset-y-0 right-0 w-24 md:w-48 bg-gradient-to-l from-neutral-900 to-transparent z-20 pointer-events-none hidden lg:block"></div>
 
@@ -234,7 +237,6 @@ export default function TestimonialSection() {
         {/* --- LAYOUT MOBILE & IPAD --- */}
         <div className="lg:hidden w-full relative z-10 flex flex-col items-center">
             
-            {/* Hapus scroll-smooth dari sini agar tidak bentrok dengan script scrollTo JS */}
             <div 
               ref={scrollRef}
               onScroll={handleManualScroll}
@@ -250,15 +252,15 @@ export default function TestimonialSection() {
             </div>
 
             {/* Indikator Titik */}
-            <div className="flex justify-center items-center gap-2 mt-2">
+            <div className="flex justify-center items-center gap-2 mt-0">
               {testimonials.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setActiveIndex(index)}
                   className={`transition-all duration-300 rounded-full ${
                     activeIndex === index 
-                      ? "w-8 h-2.5 bg-amber-500" 
-                      : "w-2.5 h-2.5 bg-neutral-600 hover:bg-neutral-500" 
+                      ? "w-6 md:w-8 h-2 md:h-2.5 bg-amber-500" 
+                      : "w-2 md:w-2.5 h-2 md:h-2.5 bg-neutral-600 hover:bg-neutral-500" 
                   }`}
                   aria-label={`Lihat testimoni ke-${index + 1}`}
                 />

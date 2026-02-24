@@ -103,7 +103,8 @@ export default function Hero() {
           
           {/* --- BADGE INTERAKTIF SUPER MINIMALIS --- */}
           <div className="mb-4 md:mb-6 relative inline-block mx-auto md:mx-0 group cursor-pointer select-none">
-            <div className="relative overflow-hidden inline-flex items-center gap-2.5 px-5 py-2 md:px-6 md:py-2.5 rounded-full bg-gradient-to-r from-amber-50 to-orange-50 text-amber-700 font-bold text-[10px] sm:text-xs uppercase tracking-[0.2em] border border-amber-200/60 shadow-sm backdrop-blur-sm z-10 transition-transform duration-300 hover:scale-105 active:scale-95">
+            {/* OPTIMASI MOBILE: text-[10px] dinaikkan ke text-[11px] agar lebih terbaca */}
+            <div className="relative overflow-hidden inline-flex items-center gap-2.5 px-5 py-2 md:px-6 md:py-2.5 rounded-full bg-gradient-to-r from-amber-50 to-orange-50 text-amber-700 font-bold text-[11px] sm:text-xs uppercase tracking-[0.2em] border border-amber-200/60 shadow-sm backdrop-blur-sm z-10 transition-transform duration-300 hover:scale-105 active:scale-95">
               <div className="absolute top-0 -left-[100%] w-1/2 h-full bg-gradient-to-r from-transparent via-white/80 to-transparent -skew-x-12 animate-shine pointer-events-none z-20"></div>
               <Soup size={14} className="text-amber-500 animate-pulse relative z-10 sm:w-4 sm:h-4" />
               <span className="relative z-10">The Authentic Taste of Heritage</span>
@@ -111,7 +112,7 @@ export default function Hero() {
           </div>
           
           {/* JUDUL UTAMA */}
-          {/* OPTIMASI: Semua <br> paksa dihapus, diganti dengan 3 kelompok whitespace-nowrap agar tidak ada kata yang terpisah sendirian */}
+          {/* OPTIMASI MOBILE: text-4xl (36px) sudah pas dan medium untuk HP, tetap dibiarkan mengalir tanpa terpotong */}
           <h1 
             className="text-4xl sm:text-5xl lg:text-6xl xl:text-[4rem] font-black leading-[1.3] md:leading-tight text-neutral-900 w-full relative z-10 tracking-tight"
             style={{ fontFamily: 'var(--font-playfair), serif' }} 
@@ -128,15 +129,17 @@ export default function Hero() {
           </h1>
           
           {/* SUBJUDUL/PARAGRAF */}
-          <p className="text-sm md:text-lg text-neutral-500 max-w-xl mx-auto md:mx-0 font-medium leading-[1.8] md:leading-loose relative z-10 mb-8 md:mb-10 mt-6 md:mt-8 px-4 md:px-0">
+          {/* OPTIMASI MOBILE: text-sm (14px) dinaikkan ke text-[15px] agar sedikit lebih besar dan nyaman dibaca di HP */}
+          <p className="text-[15px] sm:text-base md:text-lg text-neutral-500 max-w-xl mx-auto md:mx-0 font-medium leading-[1.8] md:leading-loose relative z-10 mb-8 md:mb-10 mt-6 md:mt-8 px-4 md:px-0">
             Nikmati resep warisan Mas Khans. Daging sapi pilihan yang empuk, berpadu dengan kuah santan kaya rempah yang diracik untuk kelezatan autentik khas Cirebon, kini hadir di <strong className="text-neutral-700 whitespace-nowrap">Slipi, Jakarta Barat</strong>.
           </p>
 
           {/* TOMBOL */}
           <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-3 md:gap-4 relative z-10 w-full">
+            {/* OPTIMASI MOBILE: text-sm dinaikkan ke text-[15px] di dalam tombol */}
             <button 
               onClick={() => scrollToSection('menu')}
-              className="w-[85%] sm:w-auto mx-auto md:mx-0 flex items-center justify-center gap-2 bg-[#171717] text-white px-6 py-3 md:px-8 md:py-4 rounded-full font-semibold hover:bg-neutral-800 transition-all active:scale-95 shadow-lg shadow-neutral-900/20 text-sm md:text-base"
+              className="w-[85%] sm:w-auto mx-auto md:mx-0 flex items-center justify-center gap-2 bg-[#171717] text-white px-6 py-3 md:px-8 md:py-4 rounded-full font-semibold hover:bg-neutral-800 transition-all active:scale-95 shadow-lg shadow-neutral-900/20 text-[15px] sm:text-base"
             >
               Lihat Menu Kami
               <ArrowRight size={18} className="text-amber-400" />
@@ -144,7 +147,7 @@ export default function Hero() {
             
             <button 
               onClick={() => scrollToSection('location')}
-              className="w-[85%] sm:w-auto mx-auto md:mx-0 flex items-center justify-center gap-2 bg-white text-neutral-700 border-2 border-amber-200 px-6 py-3 md:px-8 md:py-4 rounded-full font-semibold hover:border-amber-400 hover:bg-amber-50 transition-all active:scale-95 shadow-sm text-sm md:text-base"
+              className="w-[85%] sm:w-auto mx-auto md:mx-0 flex items-center justify-center gap-2 bg-white text-neutral-700 border-2 border-amber-200 px-6 py-3 md:px-8 md:py-4 rounded-full font-semibold hover:border-amber-400 hover:bg-amber-50 transition-all active:scale-95 shadow-sm text-[15px] sm:text-base"
             >
               <MapPin size={18} className="text-amber-500"/>
                Cek Lokasi
@@ -155,29 +158,33 @@ export default function Hero() {
           <div className="flex items-center justify-between md:justify-start pt-6 md:pt-8 mt-8 md:mt-10 border-t border-amber-200/60 w-full relative z-10 md:gap-8">
             
             <div className="flex flex-col items-center md:items-start w-1/3 md:w-auto">
-              <span className="text-xl sm:text-3xl font-extrabold text-neutral-900 flex items-center">
+              {/* OPTIMASI MOBILE: Angka rating dinaikkan dari text-xl ke text-2xl */}
+              <span className="text-2xl sm:text-3xl font-extrabold text-neutral-900 flex items-center">
                 <AnimatedCounter end={4.9} decimals={1} />
                 <Star size={14} className="fill-amber-500 text-amber-500 ml-1 pb-0.5 sm:w-6 sm:h-6 sm:pb-1" />
               </span>
-              <span className="text-[9px] sm:text-xs font-bold text-neutral-400 uppercase tracking-widest mt-1 text-center md:text-left">Rating</span>
+              {/* OPTIMASI MOBILE: Label text-[9px] dinaikkan ke text-[11px] */}
+              <span className="text-[11px] sm:text-xs font-bold text-neutral-400 uppercase tracking-widest mt-1 text-center md:text-left">Rating</span>
             </div>
             
             <div className="w-px h-8 sm:h-10 bg-amber-200/80 shrink-0"></div>
             
             <div className="flex flex-col items-center md:items-start w-1/3 md:w-auto">
-              <span className="text-xl sm:text-3xl font-extrabold text-neutral-900">
+              {/* OPTIMASI MOBILE: Angka pelanggan dari text-xl ke text-2xl */}
+              <span className="text-2xl sm:text-3xl font-extrabold text-neutral-900">
                 <AnimatedCounter end={10} decimals={0} suffix="K+" />
               </span>
-              <span className="text-[9px] sm:text-xs font-bold text-neutral-400 uppercase tracking-widest mt-1 text-center md:text-left">Customers</span>
+              <span className="text-[11px] sm:text-xs font-bold text-neutral-400 uppercase tracking-widest mt-1 text-center md:text-left">Customers</span>
             </div>
 
             <div className="w-px h-8 sm:h-10 bg-amber-200/80 shrink-0"></div>
 
             <div className="flex flex-col items-center md:items-start w-1/3 md:w-auto">
-              <span className="text-xl sm:text-3xl font-extrabold text-neutral-900">
+              {/* OPTIMASI MOBILE: Angka tahun dari text-xl ke text-2xl */}
+              <span className="text-2xl sm:text-3xl font-extrabold text-neutral-900">
                 <AnimatedCounter end={15} decimals={0} suffix="+" />
               </span>
-              <span className="text-[9px] sm:text-xs font-bold text-neutral-400 uppercase tracking-widest mt-1 text-center md:text-left whitespace-nowrap">
+              <span className="text-[11px] sm:text-xs font-bold text-neutral-400 uppercase tracking-widest mt-1 text-center md:text-left whitespace-nowrap">
                 Years Exp.
               </span>
             </div>
@@ -196,14 +203,14 @@ export default function Hero() {
             <div className="bg-emerald-100 p-1.5 md:p-2 rounded-lg md:rounded-xl text-emerald-600">
               <Leaf size={16} className="md:w-5 md:h-5" />
             </div>
-            <span className="text-xs md:text-sm font-bold text-neutral-800 pr-1 md:pr-2">Kaya Rempah</span>
+            <span className="text-[13px] md:text-sm font-bold text-neutral-800 pr-1 md:pr-2">Kaya Rempah</span>
           </div>
 
           <div className="absolute -bottom-4 md:-bottom-6 -right-2 md:-right-8 bg-white p-2 md:p-3 rounded-xl md:rounded-2xl shadow-xl border border-orange-100 flex items-center gap-1.5 md:gap-2 animate-float-medium z-30 scale-90 md:scale-100" style={{ animationDelay: '1s' }}>
             <div className="bg-orange-100 p-1.5 md:p-2 rounded-lg md:rounded-xl text-orange-600">
               <Flame size={16} className="md:w-5 md:h-5" />
             </div>
-            <span className="text-xs md:text-sm font-bold text-neutral-800 pr-1 md:pr-2">Dimasak Segar</span>
+            <span className="text-[13px] md:text-sm font-bold text-neutral-800 pr-1 md:pr-2">Dimasak Segar</span>
           </div>
 
           <div className="absolute top-2 md:top-4 -right-2 md:-right-6 bg-amber-500 p-2 md:p-3 rounded-full shadow-lg shadow-amber-500/40 text-white animate-float-slow z-20 scale-90 md:scale-100" style={{ animationDelay: '0.5s' }}>

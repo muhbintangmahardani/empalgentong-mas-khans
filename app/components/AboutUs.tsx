@@ -15,12 +15,12 @@ export default function AboutUs() {
   };
 
   return (
-    <section id="tentang-kami" className="py-24 bg-[#FFFBEB] relative overflow-hidden">
+    <section id="tentang-kami" className="py-20 md:py-24 bg-[#FFFBEB] relative overflow-hidden">
       
       {/* Dekorasi Background Halus */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-amber-50/50 rounded-l-[5rem] -z-0 hidden lg:block"></div>
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 flex flex-col lg:flex-row items-center gap-16">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 flex flex-col lg:flex-row items-center gap-12 md:gap-16">
         
         {/* --- BAGIAN KIRI: AREA GAMBAR --- */}
         <div className="w-full lg:w-1/2 relative">
@@ -38,77 +38,77 @@ export default function AboutUs() {
           </div>
 
           {/* Badge Animasi Melayang di Sudut Gambar */}
-          <div className="absolute -bottom-4 md:-bottom-8 -right-4 md:-right-8 bg-white p-4 rounded-2xl shadow-xl border border-amber-100 flex items-center gap-3 animate-float-medium z-20">
-            <div className="bg-amber-100 p-3 rounded-xl text-amber-600">
-              <Award size={28} />
+          <div className="absolute -bottom-4 md:-bottom-8 -right-4 md:-right-8 bg-white p-3 md:p-4 rounded-2xl shadow-xl border border-amber-100 flex items-center gap-2.5 md:gap-3 animate-float-medium z-20 scale-95 md:scale-100">
+            <div className="bg-amber-100 p-2.5 md:p-3 rounded-xl text-amber-600">
+              <Award size={24} className="md:w-7 md:h-7" />
             </div>
             <div>
-              <p className="font-extrabold text-neutral-900 text-lg leading-tight">100% Asli</p>
-              <p className="text-sm font-medium text-neutral-500">Resep Turun Temurun</p>
+              <p className="font-extrabold text-neutral-900 text-[15px] md:text-lg leading-tight">100% Asli</p>
+              <p className="text-[11px] md:text-xs font-bold text-neutral-500 uppercase tracking-wider mt-0.5">Resep Turun Temurun</p>
             </div>
           </div>
         </div>
 
         {/* --- BAGIAN KANAN: TEKS & IKON --- */}
-        <div className="w-full lg:w-1/2 space-y-8 z-10">
+        <div className="w-full lg:w-1/2 space-y-6 md:space-y-8 z-10 mt-8 lg:mt-0">
           
-          {/* Judul */}
+          {/* Judul & Badge */}
           <div>
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white text-amber-600 font-bold text-sm mb-4 border border-amber-200 shadow-sm">
-              <Heart size={16} className="fill-amber-500 text-amber-500 animate-pulse" />
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 md:px-5 md:py-2 rounded-full bg-white text-amber-600 font-bold text-[11px] md:text-sm mb-4 md:mb-5 border border-amber-200 shadow-sm">
+              <Heart size={16} className="fill-amber-500 text-amber-500 animate-pulse md:w-4 md:h-4 w-3.5 h-3.5" />
               Cerita Mas Khans
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-neutral-900 leading-tight">
-              Menjaga Tradisi, <br />
-              <span className="text-amber-500">Merawat Cita Rasa.</span>
+            <h2 className="text-4xl sm:text-4xl lg:text-5xl font-extrabold text-neutral-900 leading-[1.2] md:leading-tight tracking-tight">
+              <span className="whitespace-nowrap">Menjaga Tradisi,</span>{" "}
+              <span className="text-amber-500 whitespace-nowrap">Merawat Cita Rasa.</span>
             </h2>
           </div>
 
-          {/* Paragraf Cerita */}
-          <p className="text-lg text-neutral-600 leading-relaxed">
-            Berawal dari resep keluarga yang dijaga ketat keasliannya, Mas Khans hadir untuk membawa kembali kenangan rasa otentik khas Cirebon. Kami percaya bahwa makanan lezat berasal dari kejujuran bahan dan kesabaran dalam memasak.
+          {/* Paragraf Cerita (Rata Kiri Natural) */}
+          <p className="text-[15px] sm:text-base md:text-lg text-neutral-600 leading-[1.8] md:leading-relaxed text-left">
+            Berawal dari resep keluarga yang dijaga ketat keasliannya, Mas Khans hadir untuk membawa kembali kenangan rasa autentik khas Cirebon. Kami percaya bahwa makanan lezat berasal dari kejujuran bahan dan kesabaran dalam memasak.
           </p>
 
           {/* List Keunggulan dengan Bentuk Frame/Card */}
-          <div className="space-y-5 pt-4">
+          <div className="space-y-4 md:space-y-5 pt-2 md:pt-4">
             
             {/* Poin 1 - Card Berbingkai Interaktif */}
             <div 
               onClick={() => handleCardClick(1)}
-              className={`flex items-start gap-4 p-5 md:p-6 rounded-[1.5rem] cursor-pointer transition-all duration-300 border shadow-sm
+              className={`flex items-start gap-3.5 md:gap-4 p-4 md:p-6 rounded-2xl md:rounded-[1.5rem] cursor-pointer transition-all duration-300 border shadow-sm
                 ${activeCard === 1 
-                  ? 'bg-amber-50 border-amber-400 ring-4 ring-amber-100/50' // Mode aktif: border nyala & ada efek ring
-                  : 'bg-white border-amber-100 hover:border-amber-300 hover:bg-amber-50/50' // Mode normal/hover
+                  ? 'bg-amber-50 border-amber-400 ring-4 ring-amber-100/50' 
+                  : 'bg-white border-amber-100 hover:border-amber-300 hover:bg-amber-50/50' 
                 }
               `}
             >
-              <div className={`p-3 rounded-xl shrink-0 transition-all duration-300 ${activeCard === 1 ? 'bg-amber-500 text-white shadow-lg shadow-amber-500/40 animate-pulse' : 'bg-amber-100 text-amber-600'}`}>
-                {/* Animasi memantul akan aktif saat diklik */}
-                <Flame size={24} className={activeCard === 1 ? 'animate-bounce' : ''} />
+              <div className={`p-2.5 md:p-3 rounded-xl shrink-0 transition-all duration-300 ${activeCard === 1 ? 'bg-amber-500 text-white shadow-lg shadow-amber-500/40 animate-pulse' : 'bg-amber-100 text-amber-600'}`}>
+                <Flame size={20} className={`md:w-6 md:h-6 ${activeCard === 1 ? 'animate-bounce' : ''}`} />
               </div>
               <div>
-                <h3 className="font-bold text-neutral-900 text-lg mb-1.5 select-none">Kaya Rempah & Kuah Kental</h3>
-                <p className="text-neutral-600 text-sm leading-relaxed select-none">Perpaduan rempah-rempah pilihan dan santan segar menghasilkan kuah yang gurih, kental, dan beraroma harum yang khas.</p>
+                <h3 className="font-bold text-neutral-900 text-base md:text-lg mb-1 md:mb-1.5 select-none">Kaya Rempah & Kuah Kental</h3>
+                {/* Paragraf Card 1 (Rata Kiri Natural) */}
+                <p className="text-neutral-600 text-[14px] sm:text-sm md:text-base leading-relaxed select-none text-left">Perpaduan rempah-rempah pilihan dan santan segar menghasilkan kuah yang gurih, kental, dan beraroma harum yang khas.</p>
               </div>
             </div>
 
             {/* Poin 2 - Card Berbingkai Interaktif */}
             <div 
               onClick={() => handleCardClick(2)}
-              className={`flex items-start gap-4 p-5 md:p-6 rounded-[1.5rem] cursor-pointer transition-all duration-300 border shadow-sm
+              className={`flex items-start gap-3.5 md:gap-4 p-4 md:p-6 rounded-2xl md:rounded-[1.5rem] cursor-pointer transition-all duration-300 border shadow-sm
                 ${activeCard === 2 
-                  ? 'bg-amber-50 border-amber-400 ring-4 ring-amber-100/50' // Mode aktif: border nyala & ada efek ring
-                  : 'bg-white border-amber-100 hover:border-amber-300 hover:bg-amber-50/50' // Mode normal/hover
+                  ? 'bg-amber-50 border-amber-400 ring-4 ring-amber-100/50' 
+                  : 'bg-white border-amber-100 hover:border-amber-300 hover:bg-amber-50/50' 
                 }
               `}
             >
-              <div className={`p-3 rounded-xl shrink-0 transition-all duration-300 ${activeCard === 2 ? 'bg-amber-500 text-white shadow-lg shadow-amber-500/40 animate-pulse' : 'bg-amber-100 text-amber-600'}`}>
-                {/* Animasi memantul akan aktif saat diklik */}
-                <CheckCircle2 size={24} className={activeCard === 2 ? 'animate-bounce' : ''} />
+              <div className={`p-2.5 md:p-3 rounded-xl shrink-0 transition-all duration-300 ${activeCard === 2 ? 'bg-amber-500 text-white shadow-lg shadow-amber-500/40 animate-pulse' : 'bg-amber-100 text-amber-600'}`}>
+                <CheckCircle2 size={20} className={`md:w-6 md:h-6 ${activeCard === 2 ? 'animate-bounce' : ''}`} />
               </div>
               <div>
-                <h3 className="font-bold text-neutral-900 text-lg mb-1.5 select-none">Daging Sapi Segar Pilihan</h3>
-                <p className="text-neutral-600 text-sm leading-relaxed select-none">Hanya menggunakan potongan daging dan jeroan sapi segar setiap harinya untuk tekstur empuk yang sempurna.</p>
+                <h3 className="font-bold text-neutral-900 text-base md:text-lg mb-1 md:mb-1.5 select-none">Daging Sapi Segar Pilihan</h3>
+                {/* Paragraf Card 2 (Rata Kiri Natural) */}
+                <p className="text-neutral-600 text-[14px] sm:text-sm md:text-base leading-relaxed select-none text-left">Hanya menggunakan potongan daging dan jeroan sapi segar setiap harinya untuk tekstur empuk yang sempurna.</p>
               </div>
             </div>
 

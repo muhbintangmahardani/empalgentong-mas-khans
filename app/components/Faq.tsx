@@ -33,24 +33,30 @@ export default function FAQSection() {
   };
 
   return (
-    <section id="faq" className="py-24 bg-[#FFFBEB]">
+    // OPTIMASI: Padding konsisten py-20 untuk mobile, py-24 untuk desktop
+    <section id="faq" className="py-20 md:py-24 bg-[#FFFBEB]">
       <div className="max-w-4xl mx-auto px-6 md:px-12">
         
         {/* Header FAQ */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center justify-center p-3 bg-amber-100 rounded-2xl text-amber-600 mb-6">
-            <MessageCircleQuestion size={28} />
+        <div className="text-center mb-12 md:mb-16">
+          <div className="inline-flex items-center justify-center p-3 md:p-3.5 bg-amber-100 rounded-2xl text-amber-600 mb-5 md:mb-6 shadow-sm">
+            <MessageCircleQuestion size={24} className="md:w-7 md:h-7" />
           </div>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-neutral-900 leading-tight mb-4">
-            Pertanyaan yang Sering <span className="text-amber-500">Diajukan.</span>
+          
+          {/* OPTIMASI: Judul text-4xl mobile, tracking-tight, dan pembungkus whitespace */}
+          <h2 className="text-4xl sm:text-4xl lg:text-5xl font-extrabold text-neutral-900 leading-[1.2] md:leading-tight mb-4 tracking-tight">
+            <span className="whitespace-nowrap">Pertanyaan yang Sering</span>{" "}
+            <span className="text-amber-500 whitespace-nowrap">Diajukan.</span>
           </h2>
-          <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
+          
+          {/* OPTIMASI: Paragraf deskripsi text-[15px] mobile */}
+          <p className="text-[15px] sm:text-base md:text-lg text-neutral-600 max-w-2xl mx-auto leading-[1.8] md:leading-relaxed">
             Temukan jawaban untuk pertanyaan umum seputar hidangan, layanan, dan lokasi Empal Gentong Mas Khan.
           </p>
         </div>
 
         {/* Daftar FAQ (Accordion) */}
-        <div className="space-y-4">
+        <div className="space-y-3 md:space-y-4">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
             
@@ -64,13 +70,15 @@ export default function FAQSection() {
                 {/* Tombol Pertanyaan */}
                 <button
                   onClick={() => toggleFAQ(index)}
-                  className="w-full flex items-center justify-between p-6 text-left focus:outline-none"
+                  // OPTIMASI: Padding tombol disesuaikan untuk mobile (p-5) dan desktop (p-6)
+                  className="w-full flex items-center justify-between p-5 md:p-6 text-left focus:outline-none"
                 >
-                  <h3 className={`text-lg font-bold pr-4 transition-colors ${isOpen ? 'text-amber-600' : 'text-neutral-900'}`}>
+                  {/* OPTIMASI: Ukuran teks pertanyaan text-base di mobile */}
+                  <h3 className={`text-base md:text-lg font-bold pr-4 transition-colors leading-snug ${isOpen ? 'text-amber-600' : 'text-neutral-900'}`}>
                     {faq.question}
                   </h3>
-                  <div className={`p-2 rounded-full transition-all duration-300 flex-shrink-0 ${isOpen ? 'bg-amber-100 text-amber-600 rotate-180' : 'bg-neutral-50 text-neutral-400'}`}>
-                    <ChevronDown size={20} />
+                  <div className={`p-1.5 md:p-2 rounded-full transition-all duration-300 flex-shrink-0 ${isOpen ? 'bg-amber-100 text-amber-600 rotate-180' : 'bg-neutral-50 text-neutral-400'}`}>
+                    <ChevronDown size={18} className="md:w-5 md:h-5" />
                   </div>
                 </button>
 
@@ -81,7 +89,8 @@ export default function FAQSection() {
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <div className="p-6 pt-0 text-neutral-600 leading-relaxed border-t border-neutral-50 mt-2">
+                    {/* PERBAIKAN: Teks jawaban text-[14px] mobile, rata kiri natural (text-left) */}
+                    <div className="p-5 md:p-6 pt-0 text-[14px] sm:text-sm md:text-base text-neutral-600 leading-relaxed border-t border-neutral-50 mt-2 text-left">
                       {faq.answer}
                     </div>
                   </div>
@@ -92,12 +101,14 @@ export default function FAQSection() {
         </div>
 
         {/* Tambahan: Ajakan bertindak jika masih ada pertanyaan */}
-        <div className="mt-12 text-center bg-white p-8 rounded-3xl border border-neutral-100 shadow-sm">
-          <h4 className="text-xl font-bold text-neutral-900 mb-2">Masih punya pertanyaan lain?</h4>
-          <p className="text-neutral-500 mb-6">Jangan ragu untuk menghubungi tim kami secara langsung.</p>
+        <div className="mt-10 md:mt-12 text-center bg-white p-6 md:p-8 rounded-3xl border border-neutral-100 shadow-sm">
+          {/* OPTIMASI: Ukuran heading CTA diselaraskan */}
+          <h4 className="text-lg md:text-xl font-bold text-neutral-900 mb-2">Masih punya pertanyaan lain?</h4>
+          <p className="text-[14px] sm:text-[15px] md:text-base text-neutral-500 mb-5 md:mb-6">Jangan ragu untuk menghubungi tim kami secara langsung.</p>
           <a 
             href="https://wa.me/+6289664031115" 
-            className="inline-flex items-center gap-2 bg-neutral-900 hover:bg-amber-500 text-white px-8 py-3.5 rounded-full font-bold transition-colors shadow-lg shadow-neutral-200"
+            // OPTIMASI: Ukuran teks tombol diselaraskan
+            className="inline-flex items-center gap-2 bg-neutral-900 hover:bg-amber-500 text-white px-6 py-3 md:px-8 md:py-3.5 rounded-full text-[14px] md:text-base font-bold transition-colors shadow-lg shadow-neutral-200 active:scale-95"
           >
             Hubungi Kami
           </a>
