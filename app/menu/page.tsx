@@ -15,7 +15,7 @@ export default function AllMenuPage() {
       category: "Empal Gentong",
       name: "Empal Gentong Santan",
       description: "Kuah santan gurih kaya rempah dengan irisan daging sapi empuk.",
-      price: "Rp 25.000",
+      price: "Rp 23.000",
       image: "/assets/empal-gentong.png"
     },
     {
@@ -24,7 +24,7 @@ export default function AllMenuPage() {
       category: "Empal Gentong",
       name: "Empal Gentong Non-Santan (Asem)",
       description: "Kuah bening segar dengan belimbing wuluh dan daging empuk.",
-      price: "Rp 25.000",
+      price: "Rp 23.000",
       image: "/assets/empal-gentong.png"
     },
     {
@@ -41,30 +41,12 @@ export default function AllMenuPage() {
       type: "makanan",
       category: "Menu Modern",
       name: "Indomie Mas Khans",
-      description: "Indomie dengan siraman kuah empal dan daging sapi.",
-      price: "Rp 18.000",
-      image: "/assets/empal-gentong.png"
-    },
-    {
-      id: 5,
-      type: "makanan",
-      category: "Makanan Pendamping",
-      name: "Sate Kambing Muda (10 Tusuk)",
-      description: "Sate kambing muda khas Cirebon yang super empuk.",
-      price: "Rp 45.000",
-      image: "/assets/empal-gentong.png"
-    },
-    {
-      id: 6,
-      type: "minuman",
-      category: "Minuman Khas",
-      name: "Es Tjampolay",
-      description: "Sirup legendaris asli Cirebon rasa pisang susu yang manis dan segar.",
+      description: "Indomie dengan racikan mas khans yang begitu nikmat dan menggugah selera",
       price: "Rp 12.000",
       image: "/assets/empal-gentong.png"
     },
     {
-      id: 7,
+      id: 5,
       type: "minuman",
       category: "Minuman",
       name: "Es Teh Manis / Tawar",
@@ -73,7 +55,7 @@ export default function AllMenuPage() {
       image: "/assets/empal-gentong.png"
     },
     {
-      id: 8,
+      id: 6,
       type: "minuman",
       category: "Minuman",
       name: "Es Jeruk / Jeruk Panas",
@@ -180,8 +162,8 @@ export default function AllMenuPage() {
           {filteredMenu.map((item) => (
             <div 
               key={item.id} 
-              className="group bg-white rounded-[1.5rem] md:rounded-[2rem] p-4 flex flex-col shadow-lg shadow-neutral-200/40 border border-amber-50 cursor-pointer hover:-translate-y-2 hover:shadow-2xl transition-all duration-300"
-              onClick={() => setSelectedItem(item)}
+              // PERBAIKAN: Menghapus onClick dari Card utama dan cursor-pointer agar aman saat digeser
+              className="group bg-white rounded-[1.5rem] md:rounded-[2rem] p-4 flex flex-col shadow-lg shadow-neutral-200/40 border border-amber-50 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300"
             >
               <div className="h-48 md:h-52 w-full rounded-2xl overflow-hidden mb-4 relative">
                 <img src={item.image} alt={item.name} className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" />
@@ -193,7 +175,6 @@ export default function AllMenuPage() {
 
               <div className="flex-grow px-2">
                 <h3 className="text-lg md:text-xl font-bold text-neutral-900 mb-2 group-hover:text-amber-600 transition-colors leading-tight">{item.name}</h3>
-                {/* PERBAIKAN: Dibuat rata kiri (text-left) natural */}
                 <p className="text-[14px] md:text-[15px] text-neutral-500 mb-6 line-clamp-2 leading-relaxed text-left">{item.description}</p>
               </div>
 
@@ -202,7 +183,12 @@ export default function AllMenuPage() {
                 
                 <div className="relative">
                   <div className="absolute inset-0 bg-amber-400 rounded-2xl opacity-0 group-hover:opacity-100 group-hover:animate-ping"></div>
-                  <button className="relative z-10 bg-neutral-100 text-neutral-600 group-hover:bg-amber-500 group-hover:text-white p-2.5 rounded-2xl transition-all duration-300 shadow-sm group-hover:shadow-lg group-hover:shadow-amber-500/50 active:scale-90 flex items-center justify-center">
+                  {/* PERBAIKAN: Memindahkan onClick khusus ke tombol ikon Info ini saja */}
+                  <button 
+                    onClick={() => setSelectedItem(item)}
+                    className="relative z-10 bg-neutral-100 text-neutral-600 group-hover:bg-amber-500 group-hover:text-white p-2.5 rounded-2xl transition-all duration-300 shadow-sm group-hover:shadow-lg group-hover:shadow-amber-500/50 active:scale-90 flex items-center justify-center cursor-pointer"
+                    aria-label="Lihat Detail Menu"
+                  >
                     <Info size={18} className="transform transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110" />
                   </button>
                 </div>
@@ -253,7 +239,6 @@ export default function AllMenuPage() {
                 {selectedItem.name}
               </h3>
               
-              {/* PERBAIKAN: Dibuat rata kiri (text-left) natural */}
               <p className="text-[15px] md:text-base text-neutral-600 leading-relaxed mb-8 text-left">
                 {selectedItem.description}
               </p>

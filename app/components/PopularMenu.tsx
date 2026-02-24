@@ -12,8 +12,9 @@ export default function PopularMenu() {
       id: 1,
       name: "Empal Gentong Santan",
       description: "Signature dish Mas Khans. Kuah santan gurih kaya rempah dengan irisan daging sapi pilihan yang sangat empuk. Dimasak secara perlahan untuk mempertahankan aroma khas Cirebon yang autentik.",
-      price: "Rp 25.000",
-      image: "assets/empal-gentong.png", 
+      price: "Rp 23.000",
+      // PERBAIKAN: Menambahkan garis miring (/) di depan assets
+      image: "/assets/empal-gentong.png", 
       badge: "Best Seller",
       icon: <Star size={14} className="fill-amber-400 text-amber-400" />
     },
@@ -21,8 +22,8 @@ export default function PopularMenu() {
       id: 2,
       name: "Empal Gentong Non-Santan",
       description: "Sering disebut Empal Asem. Kuah bening segar dengan sensasi asam gurih dari belimbing wuluh dan daging empuk. Sangat cocok bagi Anda yang menginginkan kehangatan tanpa santan.",
-      price: "Rp 25.000",
-      image: "assets/empal-gentong.png",
+      price: "Rp 23.000",
+      image: "/assets/empal-gentong.png",
       badge: "Segar",
       icon: <Flame size={14} className="text-orange-400" />
     },
@@ -31,16 +32,16 @@ export default function PopularMenu() {
       name: "Nasi Lengko Spesial",
       description: "Perpaduan nasi hangat, tahu, tempe, tauge segar, siraman saus kacang khas Cirebon dan taburan kucai. Menu sehat yang mengenyangkan dan kaya rasa.",
       price: "Rp 15.000",
-      image: "assets/empal-gentong.png",
+      image: "/assets/empal-gentong.png",
       badge: "Pilihan Sehat",
       icon: <Leaf size={14} className="text-emerald-400" />
     },
     {
       id: 4,
       name: "Indomie Mas Khans",
-      description: "Bukan Indomie biasa. Diracik dengan bumbu rahasia Mas Khans dan dipadukan dengan siraman kuah empal yang kaya rasa, ditambah topping daging sapi empuk.",
-      price: "Rp 18.000",
-      image: "assets/empal-gentong.png",
+      description: "Bukan Indomie biasa. Diracik dengan bumbu rahasia Mas Khans yang begitu menggugah selera ketika disantap",
+      price: "Rp 12.000",
+      image: "/assets/empal-gentong.png",
       badge: "Menu Unik",
       icon: <Sparkles size={14} className="text-amber-400" />
     }
@@ -48,12 +49,11 @@ export default function PopularMenu() {
 
   const closeModal = () => setSelectedItem(null);
 
-  // --- PERBAIKAN: JURUS KUNCI SCROLL PALING AMPUH (Bisa untuk iOS/Safari) ---
   useEffect(() => {
     if (selectedItem) {
       document.documentElement.style.overflow = 'hidden';
       document.body.style.overflow = 'hidden';
-      document.body.style.touchAction = 'none'; // Mematikan gestur scroll di layar HP
+      document.body.style.touchAction = 'none'; 
     } else {
       document.documentElement.style.overflow = '';
       document.body.style.overflow = '';
@@ -119,10 +119,9 @@ export default function PopularMenu() {
           {menuItems.map((item) => (
             <div 
               key={item.id} 
-              className="bg-white rounded-[1.5rem] md:rounded-3xl border border-neutral-100 shadow-lg shadow-neutral-200/40 overflow-hidden hover:shadow-2xl hover:shadow-amber-500/20 transition-all duration-300 md:hover:-translate-y-2 flex flex-col cursor-pointer"
-              onClick={() => setSelectedItem(item)} 
+              className="bg-white rounded-[1.5rem] md:rounded-3xl border border-neutral-100 shadow-lg shadow-neutral-200/40 overflow-hidden hover:shadow-2xl hover:shadow-amber-500/20 transition-all duration-300 md:hover:-translate-y-2 flex flex-col group"
             >
-              <div className="relative h-48 md:h-56 w-full overflow-hidden bg-neutral-100 group">
+              <div className="relative h-48 md:h-56 w-full overflow-hidden bg-neutral-100">
                 
                 {item.badge && (
                   <div className="absolute top-3 left-3 md:top-4 md:left-4 z-20 overflow-hidden bg-neutral-900/80 backdrop-blur-md px-3 py-1.5 rounded-full shadow-lg border border-neutral-700/50">
@@ -147,7 +146,6 @@ export default function PopularMenu() {
                   <h3 className="text-lg md:text-xl font-bold text-neutral-900 leading-tight mb-2">
                     {item.name}
                   </h3>
-                  {/* PERBAIKAN: Dibuat rata kiri natural (text-left) */}
                   <p className="text-[14px] sm:text-sm md:text-[15px] text-neutral-500 leading-relaxed mb-6 line-clamp-3 text-left">
                     {item.description}
                   </p>
@@ -158,8 +156,10 @@ export default function PopularMenu() {
                     {item.price}
                   </span>
                   
+                  {/* PERBAIKAN: Menambahkan relative z-20 agar area kliknya prioritas teratas */}
                   <button 
-                    className="flex items-center justify-center p-2 md:p-2.5 rounded-2xl bg-amber-50 text-amber-500 border border-amber-200/50 transition-all duration-200 active:scale-90 active:bg-amber-500 active:text-white md:hover:bg-amber-500 md:hover:text-white shadow-sm"
+                    onClick={() => setSelectedItem(item)} 
+                    className="relative z-20 flex items-center justify-center p-2 md:p-2.5 rounded-2xl bg-amber-50 text-amber-500 border border-amber-200/50 transition-all duration-200 active:scale-90 active:bg-amber-500 active:text-white md:hover:bg-amber-500 md:hover:text-white shadow-sm cursor-pointer"
                     aria-label="Lihat Detail Menu"
                   >
                     <Info size={18} className="md:w-5 md:h-5" />
@@ -183,13 +183,10 @@ export default function PopularMenu() {
       {selectedItem && (
         <div 
           className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-neutral-900/60 backdrop-blur-sm animate-fade-in touch-none"
-          /* Pastikan area ini kosong tanpa fungsi onClick apapun */
         >
           <div 
             className="bg-white rounded-[1.5rem] md:rounded-[2rem] w-full max-w-md overflow-hidden shadow-2xl relative animate-pop-in pointer-events-auto"
-            /* Tidak ada stopPropagation karena parent sudah bersih */
           >
-            {/* INI SATU-SATUNYA CARA KELUAR */}
             <button 
               onClick={closeModal}
               className="absolute top-4 right-4 z-20 bg-black/40 hover:bg-black/60 active:scale-90 text-white p-2 rounded-full backdrop-blur-md transition-all md:hover:rotate-90 md:hover:scale-110 duration-300"
@@ -221,7 +218,6 @@ export default function PopularMenu() {
                 {selectedItem.name}
               </h3>
               
-              {/* PERBAIKAN: Dibuat rata kiri natural (text-left) */}
               <p className="text-[14px] md:text-base text-neutral-600 leading-relaxed mb-6 md:mb-8 text-left">
                 {selectedItem.description}
               </p>
