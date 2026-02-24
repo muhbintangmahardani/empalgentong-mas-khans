@@ -13,8 +13,7 @@ export default function PopularMenu() {
       name: "Empal Gentong Santan",
       description: "Signature dish Mas Khans. Kuah santan gurih kaya rempah dengan irisan daging sapi pilihan yang sangat empuk. Dimasak secara perlahan untuk mempertahankan aroma khas Cirebon yang autentik.",
       price: "Rp 23.000",
-      // PERBAIKAN: Menambahkan garis miring (/) di depan assets
-      image: "/assets/empal-gentong.png", 
+      image: "/assets/empalgentong.png", 
       badge: "Best Seller",
       icon: <Star size={14} className="fill-amber-400 text-amber-400" />
     },
@@ -23,7 +22,7 @@ export default function PopularMenu() {
       name: "Empal Gentong Non-Santan",
       description: "Sering disebut Empal Asem. Kuah bening segar dengan sensasi asam gurih dari belimbing wuluh dan daging empuk. Sangat cocok bagi Anda yang menginginkan kehangatan tanpa santan.",
       price: "Rp 23.000",
-      image: "/assets/empal-gentong.png",
+      image: "/assets/empalgentong.png",
       badge: "Segar",
       icon: <Flame size={14} className="text-orange-400" />
     },
@@ -32,7 +31,7 @@ export default function PopularMenu() {
       name: "Nasi Lengko Spesial",
       description: "Perpaduan nasi hangat, tahu, tempe, tauge segar, siraman saus kacang khas Cirebon dan taburan kucai. Menu sehat yang mengenyangkan dan kaya rasa.",
       price: "Rp 15.000",
-      image: "/assets/empal-gentong.png",
+      image: "/assets/nasilengko.png",
       badge: "Pilihan Sehat",
       icon: <Leaf size={14} className="text-emerald-400" />
     },
@@ -41,7 +40,7 @@ export default function PopularMenu() {
       name: "Indomie Mas Khans",
       description: "Bukan Indomie biasa. Diracik dengan bumbu rahasia Mas Khans yang begitu menggugah selera ketika disantap",
       price: "Rp 12.000",
-      image: "/assets/empal-gentong.png",
+      image: "/assets/migoreng.png",
       badge: "Menu Unik",
       icon: <Sparkles size={14} className="text-amber-400" />
     }
@@ -121,7 +120,8 @@ export default function PopularMenu() {
               key={item.id} 
               className="bg-white rounded-[1.5rem] md:rounded-3xl border border-neutral-100 shadow-lg shadow-neutral-200/40 overflow-hidden hover:shadow-2xl hover:shadow-amber-500/20 transition-all duration-300 md:hover:-translate-y-2 flex flex-col group"
             >
-              <div className="relative h-48 md:h-56 w-full overflow-hidden bg-neutral-100">
+              {/* PERBAIKAN: Menambahkan bg-neutral-50 dan p-2 seperti pada All Menu */}
+              <div className="relative h-48 md:h-56 w-full shrink-0 overflow-hidden bg-neutral-50 flex items-center justify-center p-2">
                 
                 {item.badge && (
                   <div className="absolute top-3 left-3 md:top-4 md:left-4 z-20 overflow-hidden bg-neutral-900/80 backdrop-blur-md px-3 py-1.5 rounded-full shadow-lg border border-neutral-700/50">
@@ -133,12 +133,14 @@ export default function PopularMenu() {
                   </div>
                 )}
                 
+                {/* PERBAIKAN UTAMA: Menggunakan object-contain mutlak untuk semua layar agar tidak ada yg terpotong */}
                 <img 
                   src={item.image} 
                   alt={item.name} 
-                  className="w-full h-full object-cover transform md:group-hover:scale-110 transition-transform duration-500 ease-out"
+                  className="w-full h-full object-contain transform scale-100 group-hover:scale-110 transition-transform duration-500 ease-out"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/40 to-transparent opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 hidden md:block"></div>
+                
+                <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:block pointer-events-none"></div>
               </div>
 
               <div className="p-5 md:p-6 flex flex-col flex-grow">
@@ -156,7 +158,6 @@ export default function PopularMenu() {
                     {item.price}
                   </span>
                   
-                  {/* PERBAIKAN: Menambahkan relative z-20 agar area kliknya prioritas teratas */}
                   <button 
                     onClick={() => setSelectedItem(item)} 
                     className="relative z-20 flex items-center justify-center p-2 md:p-2.5 rounded-2xl bg-amber-50 text-amber-500 border border-amber-200/50 transition-all duration-200 active:scale-90 active:bg-amber-500 active:text-white md:hover:bg-amber-500 md:hover:text-white shadow-sm cursor-pointer"
@@ -194,13 +195,16 @@ export default function PopularMenu() {
               <X size={20} />
             </button>
 
-            <div className="relative h-56 md:h-64 w-full">
+            {/* PERBAIKAN MODAL: Menambahkan bg-neutral-50 dan p-4 */}
+            <div className="relative h-56 md:h-64 w-full bg-neutral-50 flex items-center justify-center p-4">
+              
+              {/* PERBAIKAN: object-contain digunakan agar gambar popup juga utuh */}
               <img 
                 src={selectedItem.image} 
                 alt={selectedItem.name} 
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent pointer-events-none"></div>
               
               {selectedItem.badge && (
                 <div className="absolute bottom-4 left-5 md:left-6 overflow-hidden bg-neutral-900/90 backdrop-blur-md px-3 py-1.5 md:px-4 md:py-2 rounded-full shadow-lg border border-neutral-700/50">
@@ -213,7 +217,7 @@ export default function PopularMenu() {
               )}
             </div>
 
-            <div className="p-5 md:p-8">
+            <div className="p-5 md:p-8 border-t border-neutral-100">
               <h3 className="text-xl md:text-2xl font-extrabold text-neutral-900 leading-tight mb-3 md:mb-4">
                 {selectedItem.name}
               </h3>
